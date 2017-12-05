@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InAnalysis</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div th:replace="fragments/header :: header"></div>
+  <div id="container" class="container-fluid">
+    <div class="row">
+
+      <!-- Main -->
+      <div id="mainCol" class="col-md-12">
+
+        <form method="POST" autocomplete="off">
+          <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+          <input type="hidden" name="actionFrom" th:value="user" />
+          <div class="table-responsive">
+            <table class="table table-bordered" id="data-preprocess-file-list">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Roles</th>
+                  <th>Project List</th>
+                  <th>Api List</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="user : ${userList}">
+                  <td th:text="${user.id}">ID</td>
+                  <td th:text="${user.name}">Name</td>
+                  <td th:text="${user.email}" class="small">Email</td>
+                  <td>
+                    <div th:each="role : ${user.roles}">
+                      <span class="label label-info" th:text="${role}">Role</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div th:each="project : ${user.projects}">
+                      <a th:href="${'/project/' + project.value.id}"
+                        th:text="${project.value.name + '[' + project.value.type + ']'}">Project Link</a>
+                    </div>
+                  </td>
+                  <td>
+                    <div th:each="api : ${user.apis}">
+                      <!--  -->
+                      <!--<a th:href="${(#mvc.url('AIC#toApiInfoPage').arg(0,api.value.apiId)).build()}" th:text="${api.value.apiName}">API
+                        Link</a>  -->
+                      <a th:href="${'/api-info/' + api.value.apiId}" th:text="${api.value.apiName}">API Link</a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- /TABLE -->
+          </div>
+          <!-- /DIV table-responsive -->
+        </form>
+        <!-- /FORM -->
+
+      </div>
+      <!-- /Main -->
+
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <div th:replace="fragments/sidebar :: sidebar-js"></div>
+</body>
+</html>

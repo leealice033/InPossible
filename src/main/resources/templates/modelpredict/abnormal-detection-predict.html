@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InAnalysis</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+
+  <div th:replace="fragments/header :: header"></div>
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- projectType=csvInfo.projectType -->
+      <!-- SideBar -->
+      <div class="col-md-2"
+        th:if="${csvInfo.projectType.equals('abnormal-detection')||csvInfo.projectType.equals('regression')||csvInfo.projectType.equals('classification')}">
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+      </div>
+
+      <div class="col-md-2" th:if="${csvInfo.projectType.equals('clustering')}">
+        <div th:replace="fragments/sidebar-noprediction :: sidebar"></div>
+      </div>
+      <!-- /SideBar -->
+
+      <div class="col-md-10">
+
+        <h3>
+          Model Prediction
+          <span class="badge" th:text="${csvInfo.server}">Server</span>
+          <!--${csvInfo.server} -->
+        </h3>
+        <div class="well well-sm">
+          <!--TEST DATA INFO -->
+          <div>
+            <p>
+              Test Data Name:
+              <span class="label label-primary" th:text="${csvInfo.fileName}"></span>
+              <!--${test data} test data -->
+            </p>
+
+
+          </div>
+        </div>
+
+
+        <!-- Step 2 -->
+        <!--     /*
+     * tp | fn
+     * fp | tn
+     * */ -->
+        <!-- fragment -->
+        <div th:if="${csvInfo.projectType.equals('abnormal-detection')}" th:fragment="header">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Prediction Results</h3>
+            </div>
+            <div class="panel-body">
+              <!-- PREDICTION RESULTS -->
+              <div th:if="${predictOutput == null}">Predict Error</div>
+              <div th:if="${predictOutput != null}">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="model-selection-list">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Abnormal(predict)</th>
+                        <th>Normal(predict)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Abnormal(actual)</td>
+                        <td th:text="${predictOutput.confusionMatrix.tp}">tp</td>
+                        <td th:text="${predictOutput.confusionMatrix.fn}">fn</td>
+                      </tr>
+                      <tr>
+                        <td>Normal(actual)</td>
+                        <td th:text="${predictOutput.confusionMatrix.fp}">fp</td>
+                        <td th:text="${predictOutput.confusionMatrix.tn}">tn</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /table-responsive-->
+                <!-- show model info -->
+
+                <div class="well well-sm">
+                  <p class="text-primary">
+                    Click to see model image
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                    <a class="btn btn-primary btn-md"
+                      th:href="${(#mvc.url('MIC#toModelInfoPage').arg(0,csvInfo.projectId).arg(1,previewParam.modelId)).build()}">
+                      <i class="fa fa-industry" aria-hidden="true"></i>
+                      Model Info
+                    </a>
+                  </p>
+
+                </div>
+                <!-- /show model info -->
+              </div>
+            </div>
+            <!-- /panel-body -->
+
+          </div>
+          <!-- / PREDICTION RESULTS -->
+        </div>
+        <!-- /fragment -->
+
+
+      </div>
+      <!-- col-md-10 -->
+    </div>
+    <!-- /row -->
+
+  </div>
+  <!-- end container -->
+
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <div th:replace="fragments/sidebar :: sidebar-js"></div>
+</body>
+</html>

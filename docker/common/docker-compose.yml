@@ -1,0 +1,10 @@
+version: '2'
+services:
+  r-server:
+    image: mark1002/inanalysisrserver
+    ports:
+      - "8001:8001"
+  in-analysis:
+    image: insnergy/in-analysis:1.0.0
+    ports:
+      - "8008:8008"

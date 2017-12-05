@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InAnalysis</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+
+  <div th:replace="fragments/header :: header"></div>
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- projectType=csvInfo.projectType -->
+      <!-- SideBar -->
+      <div class="col-md-2"
+        th:if="${csvInfo.projectType.equals('abnormal-detection')||csvInfo.projectType.equals('regression')||csvInfo.projectType.equals('classification')}">
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+      </div>
+
+      <div class="col-md-2" th:if="${csvInfo.projectType.equals('clustering')}">
+        <div th:replace="fragments/sidebar-noprediction :: sidebar"></div>
+      </div>
+      <!-- /SideBar -->
+
+      <div class="col-md-10">
+
+        <h3>
+          Model Prediction
+          <span class="badge" th:text="${csvInfo.server}">Server</span>
+          <!--${csvInfo.server} -->
+        </h3>
+        <div class="well well-sm">
+          <!--TEST DATA INFO -->
+          <div>
+            <p>
+              Test Data Name:
+              <span class="label label-primary" th:text="${csvInfo.fileName}"></span>
+              <!--${test data} test data -->
+            </p>
+
+
+          </div>
+        </div>
+
+        <form method="POST" action="/model-prediction">
+          <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+          <input type="hidden" name="fileId" th:value="${csvInfo.fileId}"></input>
+          <input type="hidden" name="projectId" th:value="${csvInfo.projectId}"></input>
+          <input type="hidden" name="labelColumn" th:value="${predictInputParam.labelColumn}"></input>
+          <!-- Step 1 -->
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Step 1: Select Test Data Column and Model to check Prediction Accuracy</h3>
+            </div>
+            <div class="panel-body">
+
+
+              <!-- MODEL SELECT LIST -->
+              <h4>Model Select List</h4>
+              <div th:if="${modelList != null}" class="panel panel-default">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="model-selection-list">
+                    <thead>
+                      <tr>
+                        <th>
+                          <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                        </th>
+                        <th>Model Name</th>
+                        <th>Method</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="model : ${modelList}">
+                        <td>
+                          <div class="custom-radio">
+                            <input type="radio" name="selectModel" th:value="${model.model_id}"
+                              th:field="*{predictInputParam.modelId}" />
+                          </div>
+                        </td>
+                        <td th:text="${model.model_name}">Model Name</td>
+                        <td th:text="${model.model_method}">Method</td>
+                        <td th:text="${model.actions[1].value}">Action</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /table -->
+              </div>
+              <!-- /model select -->
+
+              <div class="form-inline">
+                <input type="submit" class="btn btn-warning" name="action" value="Cancel"></input>
+                <input type="submit" class="showLoadingIcon btn btn-primary" name="action" value="Predict" />
+              </div>
+            </div>
+            <!-- /panel-body -->
+
+          </div>
+          <!-- /MODEL SELECT LIST -->
+        </form>
+        <!-- Step 2 -->
+        <!--     /*
+     * tp | fn
+     * fp | tn
+     * */ -->
+        <!-- Show classification_report -->
+        <div th:if="${action == 'Predict'}" class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Prediction Results: Classification Report</h3>
+          </div>
+          <div class="panel-body">
+            <!-- PREDICTION RESULTS -->
+            <div th:if="${predictOutput  == null || predictOutput.performance ==null}">Predict Error</div>
+            <div th:if="${predictOutput.performance.classificationReport==null}">Predict
+              Error:(classification_report)</div>
+            <div th:if="${predictOutput != null}">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <tr th:each="entry :${reportMap}">
+                    <th th:if="${entry.key == 0}" th:each="rowValue :${entry.value}" th:text=${rowValue}></th>
+                    <td th:if="${entry.key != 0}" th:each="rowValue :${entry.value}" th:text=${rowValue}></td>
+                  </tr>
+                </table>
+              </div>
+              <!-- /table-responsive-->
+            </div>
+          </div>
+          <!-- /panel-body -->
+
+          <!-- Show confusion_matrix -->
+          <div class="panel-heading">
+            <h3 class="panel-title">Prediction Results: Confusion Matrix</h3>
+          </div>
+          <div class="panel-body">
+            <!-- PREDICTION RESULTS -->
+            <div th:if="${predictOutput  == null || predictOutput.performance ==null}">Predict Error</div>
+            <div th:if="${predictOutput.performance.confusionMatrix == null}">Predict Error:(confusion matrix)</div>
+            <div th:if="${predictOutput.performance.confusionMatrix != null}">
+
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <tr th:each="entry :${confusionMatrixMap}">
+                    <th th:if="${entry.key == 0}" th:each="rowValue :${entry.value}" th:text=${rowValue}></th>
+                    <td th:if="${entry.key != 0}" th:each="rowValue :${entry.value}" th:text=${rowValue}></td>
+                  </tr>
+                </table>
+              </div>
+              <!-- /table-responsive-->
+            </div>
+
+            <!-- show model info -->
+            <p class="text-primary">
+              Click to see model image
+              <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+              <a class="btn btn-primary btn-md"
+                th:href="${(#mvc.url('MIC#toModelInfoPage').arg(0,predictInputParam.projectId).arg(1,predictInputParam.modelId)).build()}">
+                <i class="fa fa-industry" aria-hidden="true"></i>
+                Model Info
+              </a>
+            </p>
+            <!-- /show model info -->
+
+          </div>
+          <!-- /panel-body -->
+
+        </div>
+        <!-- / PREDICTION RESULTS -->
+
+
+      </div>
+      <!-- col-md-10 -->
+    </div>
+    <!-- /row -->
+
+  </div>
+  <!-- end container -->
+
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <div th:replace="fragments/sidebar :: sidebar-js"></div>
+</body>
+</html>

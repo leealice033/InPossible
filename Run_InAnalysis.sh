@@ -1,0 +1,1 @@
+nohup java -Dname=InAnalysis -Dfile.encoding=UTF8 -Dspring.profiles.active=default -jar in-analysis-1.0.0.jar &

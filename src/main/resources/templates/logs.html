@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InAnalysis Logs</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+</head>
+<body>
+  <div th:replace="fragments/header :: header"></div>
+
+  <div class="container">
+
+    <div th:if="${logs != null}">
+
+      <div class="well">
+        Logs
+        <div class="btn-group" role="group" aria-label="filter">
+          <a class="btn btn-default" href="/admin/logs/all" role="button">ALL</a>
+          <input type="text" id="logNameContains" class="btn btn-default" />
+          <a class="btn btn-default" id="logNameContainsLink" href="/admin/logs/all" role="button">Search</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-striped">
+              <thead>
+                <tr>
+                  <th>File Name</th>
+                  <th>File Size</th>
+                  <th>Last Modified</th>
+                  <th>Delete</th>
+                  <th>View(less than 10MB)</th>
+                  <th>Download ZIP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="item : ${logs}">
+                  <td th:text="${item.name}"></td>
+                  <td th:text="${item.size}"></td>
+                  <td th:text="${item.lastModified}"></td>
+                  <td>
+                    <a th:href="@{'/admin/logs/delete/' + ${item.name}}" th:text="delete"></a>
+                  </td>
+                  <td>
+                    <a th:href="@{'/admin/logs/view/' + ${item.name}}" th:text="view"></a>
+                  </td>
+                  <td>
+                    <a th:href="@{'/admin/logs/file/' + ${item.name}}" th:text="download"></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /container -->
+
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+      $(document).ready(
+          function() {
+            $("#logNameContains").keyup(
+                function() {
+                  $("#logNameContainsLink").attr("href",
+                      "/admin/logs/" + $(this).val());
+                });
+          })
+    </script>
+</body>
+</html>

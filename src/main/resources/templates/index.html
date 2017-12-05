@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InAnalysis</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<style type="text/css">
+.feature {
+	background: url('../images/14618520.jpg') 0 0 repeat;
+	background-position: top;
+	background-size: cover;
+	background-color: #dd845a;
+	color: #dd845a;
+	text-shadow: 2px 1px 10px white;
+}
+
+.jumbotron {
+	padding-top: 50px;
+	padding-bottom: 100px;
+	margin-bottom: 30px;
+}
+
+.feature h2 {
+	font-family: "Lucida Console";
+	color: white;
+}
+</style>
+</head>
+<body>
+  <div th:replace="fragments/header :: header"></div>
+  <div id="container" class="container">
+  <div class="col-md-8 col-md-push-4">
+    <div class="row">
+      <h2>
+        Hello
+        <span th:text="${userInfo.name}"></span>
+        , Welcome to InAnalysis!
+      </h2>
+    </div>
+    </div>
+    <div class="row">
+      <div class="jumbotron feature"></div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-3">
+        <ul class="list-group bg-info">
+          <li th:if="${pythonServerStatus}" class="list-group-item list-group-item-success">
+            <i class="fa fa-cubes" aria-hidden="true"></i>
+            Python Server
+            <span class="label label-success">ON</span>
+          </li>
+          <li th:if="${!pythonServerStatus}" class="list-group-item list-group-item-danger">
+            <i class="fa fa-cubes" aria-hidden="true"></i>
+            Python Server
+            <span class="label label-danger">OFF</span>
+          </li>
+
+          <li th:if="${rServerStatus}" class="list-group-item list-group-item-success">
+            <i class="fa fa-cubes" aria-hidden="true"></i>
+            R Server
+            <span class="label label-success">ON</span>
+            <span class="label label-warning" th:if="${!rServerStatus}">OFF</span>
+          </li>
+          <li th:if="${!rServerStatus}" class="list-group-item list-group-item-danger">
+            <i class="fa fa-cubes" aria-hidden="true"></i>
+            R Server
+            <span class="label label-danger">OFF</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-9">
+        <table class="table table-hover" id="data-preprocess-file-list">
+          <thead>
+            <tr>
+              <th>Total Projects</th>
+              <th>Total API</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td th:text="${projectTotal}"></td>
+              <td th:text="${apiTotal}"></td>
+            </tr>
+            <tr>
+              <td>
+                <a class="btn btn-warning btn-lg" href="/dashboard" data-toggle="tooltip" data-placement="bottom"
+                  title="Click to your projects"> Project Management</a>
+              </td>
+              <td>
+                <a class="btn btn-primary btn-lg" href="/api-management" data-toggle="tooltip" data-placement="bottom"
+                  title="Click to your APIs"> API Management</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+
+
+    </div>
+    <!-- Main -->
+    <div id="mainCol" class="col-md-12">
+      <div class="row">
+        <div class="col-md-9 col-md-pull-3"></div>
+      </div>
+
+      <footer class="text-right">
+        <p>Copyright &copy; InAnalysis | Designed by Alice</p>
+        <!-- 回到上方的連結 -->
+        <ul class="nav pull-right scroll-top">
+          <li>
+            <a href="#" title="Scroll to top">
+              <i class="glyphicon glyphicon-chevron-up"></i>
+            </a>
+          </li>
+        </ul>
+        <!-- /回到上方的連結 -->
+      </footer>
+    </div>
+    <!-- /Main -->
+
+  </div>
+  <!-- /row -->
+  <!-- /container -->
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <div th:replace="fragments/sidebar :: sidebar-js"></div>
+</body>
+</html>

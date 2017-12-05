@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InAnalysis</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div th:replace="fragments/header :: header"></div>
+  <div id="container" class="container">
+    <div class="row">
+
+      <!-- Main -->
+      <div id="mainCol" class="col-md-12">
+
+        <div th:if="${config}">
+          <ul>
+            <li>
+              CsvFileUploadDirectory:
+              <span th:text="${config.csvFileUploadDirectory}"></span>
+            </li>
+            <li>
+              PythonServerUrl:
+              <a th:href="${config.pythonServerUrl}" th:text="${config.pythonServerUrl}"></a>
+            </li>
+            <li>
+              RServerUrl:
+              <a th:href="${config.rServerUrl}" th:text="${config.rServerUrl}"></a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- /Main -->
+
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <div th:replace="fragments/sidebar :: sidebar-js"></div>
+</body>
+</html>

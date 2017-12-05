@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InAnalysis Login</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">
+body {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: white;
+	color: white;
+}
+
+.form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+	font-weight: normal;
+}
+
+.form-signin .form-control {
+	position: relative;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+
+.form-signin input[type="email"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.panel {
+	background-color: black;
+}
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-push-4 col-md-pull-4">
+        <div class="panel panel-default">
+
+          <div class="panel-body">
+            <form th:action="@{/signup}" method="post" class="form-signin">
+              <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+              <img class="img-responsive" src="../images/InAnalysisLogo.png"></img>
+              <h2 class="form-signin-heading">Create your account</h2>
+
+              <div class="form-group">
+                <label for="studentId">
+                  <font color="red"> Student ID:</font>
+                </label>
+                <input type="text" class="form-control" id="studentId" placeholder="Student ID" name="studentId"
+                  required="required" autofocus="autofocus">
+              </div>
+
+              <div class="form-group">
+                <label for="password">
+                  <font color="red">Password:</font>
+                </label>
+                <input type="password" class="form-control" id="password" placeholder="Set Password" name="password"
+                  required="required" autofocus="autofocus">
+              </div>
+
+              <div class="form-group">
+                <label for="confirmPassword">Confirm your Password:</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Password"
+                  name="confirmPassword" required="required" autofocus="autofocus">
+              </div>
+
+              <div class="form-group">
+                <label for="userName">Name:</label>
+                <input type="text" class="form-control" id="userName" placeholder="User Name" name="userName"
+                  required="required" autofocus="autofocus">
+              </div>
+
+
+
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"
+                  required="required" autofocus="autofocus">
+              </div>
+
+
+
+              <button class="btn btn-lg btn-primary btn-block" type="submit" name="action" value="Submit">Submit</button>
+              <br>
+              <a href="/login" class="btn btn-lg btn-info btn-block" role="button" aria-pressed="true">Cancel</a>
+              
+            </form>
+          </div>
+          <!-- /panel body -->
+        </div>
+        <!-- panel default -->
+      </div>
+      <!-- /panel row -->
+    </div>
+  </div>
+  <!-- /container -->
+</body>
+</html>

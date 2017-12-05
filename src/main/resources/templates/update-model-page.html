@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InAnalysis</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div th:replace="fragments/header :: header"></div>
+  <div id="container" class="container">
+    <div class="row">
+
+      <!-- Main -->
+      <div id="mainCol" class="col-md-12">
+        <h3></h3>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <i class="fa fa-cog" aria-hidden="true"></i>
+              Update Model
+            </h3>
+          </div>
+
+          <form method="POST" action="/update-model">
+            <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+            <input type="hidden" name="modelId" th:value="${updateModelParam.modelId}" />
+            <input type="hidden" name="projectId" th:value="${updateModelParam.projectId}" />
+
+            <!-- name * description -->
+
+
+            <div class="panel-body">
+              <div class="form-group">
+                <label for="modelName">Model Name</label>
+                <input id="modelName" type="text" class="form-control" name="modelName"
+                  placeholder="MODEL name(Requird)" th:field="*{updateModelParam.modelName}" />
+
+              </div>
+              <!-- /API name * description form-group -->
+
+
+
+              <div class="form-inline">
+                <input type="submit" class="btn btn-warning" name="action" value="Cancel" />
+                <input type="submit" class="showLoadingIcon btn btn-primary" name="action" value="SaveChange" />
+
+              </div>
+            </div>
+
+
+            <!--  -->
+            <!--  -->
+            <!--  -->
+            <!--  -->
+            <!--  -->
+            <!--  -->
+            <!--  -->
+          </form>
+          <!-- /FORM -->
+        </div>
+        <!-- PANEL INFO -->
+
+        <!-- /save change panel -->
+      </div>
+      <!-- /MAIN COL-10 -->
+
+    </div>
+    <!-- /ROW -->
+  </div>
+  <!-- /container -->
+
+
+
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <div th:replace="fragments/sidebar :: sidebar-js"></div>
+</body>
+</html>

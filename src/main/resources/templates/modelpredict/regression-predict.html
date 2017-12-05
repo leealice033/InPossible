@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InAnalysis</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+
+  <div th:replace="fragments/header :: header"></div>
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- projectType=csvInfo.projectType -->
+      <!-- SideBar -->
+      <div class="col-md-2"
+        th:if="${csvInfo.projectType.equals('abnormal-detection')||csvInfo.projectType.equals('regression')||csvInfo.projectType.equals('classification')}">
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+      </div>
+
+      <div class="col-md-2" th:if="${csvInfo.projectType.equals('clustering')}">
+        <div th:replace="fragments/sidebar-noprediction :: sidebar"></div>
+      </div>
+      <!-- /SideBar -->
+
+      <div class="col-md-10">
+
+        <h3>
+          Model Prediction
+          <span class="badge" th:text="${csvInfo.server}">Server</span>
+          <!--${csvInfo.server} -->
+        </h3>
+        <div class="well well-sm">
+          <!--TEST DATA INFO -->
+          <div>
+            <p>
+              Test Data Name:
+              <span class="label label-primary" th:text="${csvInfo.fileName}"></span>
+              <!--${test data} test data -->
+            </p>
+          </div>
+        </div>
+
+
+        <!-- Step 2 -->
+        <!-- fragment -->
+        <div th:if="${csvInfo.projectType.equals('regression')}" th:fragment="header">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Prediction Results</h3>
+            </div>
+            <div class="panel-body">
+              <!-- PREDICTION RESULTS -->
+              <div th:if="${predictOutput == null}">Predict Error</div>
+
+              <div th:if="${predictOutput != null}">
+                <div>
+                  <h3>Performance:</h3>
+                  <label>Mean Square Error</label>
+                  <span class="label label-success" th:text="${predictOutput.performance.mean_square_error}">Label</span>
+                </div>
+
+              </div>
+            </div>
+            <!-- /panel-body -->
+
+          </div>
+          <!-- / PREDICTION RESULTS -->
+        </div>
+        <!-- /fragment -->
+
+      </div>
+      <!-- col-md-10 -->
+    </div>
+    <!-- /row -->
+
+  </div>
+  <!-- end container -->
+
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <div th:replace="fragments/sidebar :: sidebar-js"></div>
+</body>
+</html>

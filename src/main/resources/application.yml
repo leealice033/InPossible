@@ -1,0 +1,34 @@
+spring:
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: true
+      ddl-auto: validate
+    show-sql: true
+  h2.console.enabled: true
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.sql
+  datasource:
+    url: jdbc:h2:file:./data/InAnalysis_db
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+
+server.port: 8008
+
+logging:
+  level:
+    com.insnergy: DEBUG
+
+in-analysis:
+  csv-file-upload-directory: upload-dir
+#  python-server-url: http://ntuesoe.com:8002
+#  python-server-url: https://in-analysis-python.herokuapp.com
+#  python-server-url: http://140.112.26.236:8002
+#  python-server-url: http://ntuesoe.com:8002
+#  python-server-url: http://127.0.0.1:8002
+  python-server-url: http://127.0.0.1:8002
+  r-server-url: disable

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InAnalysis</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/webjars/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" rel="stylesheet" />
+<style>
+.slider {
+	width: 100% !important;
+}
+</style>
+</head>
+<body>
+  <div th:replace="fragments/header :: header"></div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- projectType=csvInfo.projectType -->
+      <!-- SideBar -->
+      <div class="col-md-2">
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+      </div>
+
+      <!-- /SideBar -->
+
+      <div class="col-md-10">
+
+        <form method="POST" action="/data-viewer">
+          <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+          <input type="hidden" name="projectType" th:value="${csvInfo.projectType}"></input>
+          <input type="hidden" name="projectId" th:value="${csvInfo.projectId}"></input>
+          <input type="hidden" name="fileId" th:value="${csvInfo.fileId}"></input>
+          <h3>
+            Data Viewer
+            <span class="badge" th:text="${csvInfo.server}">Server</span>
+          </h3>
+
+          <div class="well well-sm">
+            File Name:
+            <span class="label label-primary" th:text="${csvInfo.fileName}"></span>
+          </div>
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title"></h3>
+            </div>
+            <div class="panel-body">
+
+              <!-- table -->
+
+              <div th:if="${dataInfoList != null}" class="table-responsive">
+                <table class="table table-bordered" id="data-info-list">
+                  <thead>
+                    <tr>
+                      <th>Column Name</th>
+                      <th>First Value</th>
+                      <th>Value Type</th>
+                      <th>Mean</th>
+                      <th>Standard Deviation</th>
+                      <th>Chart</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="dataInfo : ${dataPreviewInfoList}">
+                      <td th:text="${dataInfo.columnName}"></td>
+                      <td th:text="${dataInfo.firstValue}"></td>
+                      <td th:text="${dataInfo.valueType}"></td>
+                      <td th:text="${dataInfo.mean}"></td>
+                      <td th:text="${dataInfo.standardDeviation}"></td>
+
+                      <td>
+                        <a class="showLoadingIcon btn btn-success btn-xs"
+                          th:href="${(#mvc.url('DVC#toShowChart').arg(0, projectId).arg(1, fileId).arg(2, dataInfo.imgGetPath)).build()}"
+                          data-toggle="tooltip" data-placement="bottom" title="Click to do see chart">
+                          <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                        </a>
+
+
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /table -->
+
+
+
+            </div>
+            <!-- /panel-body -->
+          </div>
+          <!-- /panel-info -->
+          <div class="form-inline">
+            <input type="submit" class="btn btn-primary" name="action" value="Cancel"></input>
+          </div>
+        </form>
+      </div>
+      <!-- /col-md-10 -->
+
+    </div>
+  </div>
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <div th:replace="fragments/sidebar :: sidebar-js"></div>
+</body>
+</html>
