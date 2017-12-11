@@ -1,1 +1,0 @@
-nohup mvn spring-boot:run -Drun.profiles=ican &
