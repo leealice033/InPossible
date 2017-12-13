@@ -1,0 +1,127 @@
+[2017-12-13 16:54:01,322][INFO][restartedMain][InPossibleApplication] Starting InPossibleApplication on Leede-MacBook.local with PID 3742 (/Users/Alice/InPossible/target/classes started by Alice in /Users/Alice/InPossible)
+[2017-12-13 16:54:01,323][DEBUG][restartedMain][InPossibleApplication] Running with Spring Boot v2.0.0.M5, Spring v5.0.0.RELEASE
+[2017-12-13 16:54:01,325][INFO][restartedMain][InPossibleApplication] No active profile set, falling back to default profiles: default
+[2017-12-13 16:54:35,418][INFO][restartedMain][InAnalysisConfig] ConfigPrefix[in-analysis]: InAnalysisConfig(csvFileUploadDirectory=upload-dir, pythonServerUrl=http://127.0.0.1:8002, rServerUrl=disable)
+[2017-12-13 16:54:38,706][INFO][restartedMain][UserInfoService] DB is empty, init DB with ADMIN_USERS:[iii, teddy, swanky, mark, alice, coco] and USERS:[guest]
+[2017-12-13 16:54:39,133][DEBUG][restartedMain][UserInfoBuilder] input=UserEntity(userIndex=1, id=iii, name=iii, email=inanalysis.github.io@gmail.com, password=iii, roles=ADMIN,USER, projects=[], apis=[])
+[2017-12-13 16:54:39,180][DEBUG][restartedMain][UserInfoBuilder] build=UserInfo(index=1, id=iii, name=iii, email=inanalysis.github.io@gmail.com, password=iii, roles=[ADMIN, USER], projects={}, apis={})
+[2017-12-13 16:54:39,181][DEBUG][restartedMain][UserInfoBuilder] input=UserEntity(userIndex=2, id=teddy, name=teddy, email=inanalysis.github.io@gmail.com, password=teddy, roles=ADMIN,USER, projects=[], apis=[])
+[2017-12-13 16:54:39,181][DEBUG][restartedMain][UserInfoBuilder] build=UserInfo(index=2, id=teddy, name=teddy, email=inanalysis.github.io@gmail.com, password=teddy, roles=[ADMIN, USER], projects={}, apis={})
+[2017-12-13 16:54:39,181][DEBUG][restartedMain][UserInfoBuilder] input=UserEntity(userIndex=3, id=swanky, name=swanky, email=inanalysis.github.io@gmail.com, password=swanky, roles=ADMIN,USER, projects=[], apis=[])
+[2017-12-13 16:54:39,181][DEBUG][restartedMain][UserInfoBuilder] build=UserInfo(index=3, id=swanky, name=swanky, email=inanalysis.github.io@gmail.com, password=swanky, roles=[ADMIN, USER], projects={}, apis={})
+[2017-12-13 16:54:39,182][DEBUG][restartedMain][UserInfoBuilder] input=UserEntity(userIndex=4, id=mark, name=mark, email=inanalysis.github.io@gmail.com, password=mark, roles=ADMIN,USER, projects=[], apis=[])
+[2017-12-13 16:54:39,183][DEBUG][restartedMain][UserInfoBuilder] build=UserInfo(index=4, id=mark, name=mark, email=inanalysis.github.io@gmail.com, password=mark, roles=[ADMIN, USER], projects={}, apis={})
+[2017-12-13 16:54:39,183][DEBUG][restartedMain][UserInfoBuilder] input=UserEntity(userIndex=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=ADMIN,USER, projects=[], apis=[])
+[2017-12-13 16:54:39,184][DEBUG][restartedMain][UserInfoBuilder] build=UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={}, apis={})
+[2017-12-13 16:54:39,184][DEBUG][restartedMain][UserInfoBuilder] input=UserEntity(userIndex=6, id=coco, name=coco, email=inanalysis.github.io@gmail.com, password=coco, roles=ADMIN,USER, projects=[], apis=[])
+[2017-12-13 16:54:39,185][DEBUG][restartedMain][UserInfoBuilder] build=UserInfo(index=6, id=coco, name=coco, email=inanalysis.github.io@gmail.com, password=coco, roles=[ADMIN, USER], projects={}, apis={})
+[2017-12-13 16:54:39,186][DEBUG][restartedMain][UserInfoBuilder] input=UserEntity(userIndex=7, id=guest, name=guest, email=inanalysis.github.io@gmail.com, password=guest, roles=USER, projects=[], apis=[])
+[2017-12-13 16:54:39,186][DEBUG][restartedMain][UserInfoBuilder] build=UserInfo(index=7, id=guest, name=guest, email=inanalysis.github.io@gmail.com, password=guest, roles=[USER], projects={}, apis={})
+[2017-12-13 16:54:43,838][DEBUG][restartedMain][WebSecurityConfig] configure start=org.springframework.security.config.annotation.web.builders.HttpSecurity@504ae369
+[2017-12-13 16:54:43,873][DEBUG][restartedMain][WebSecurityConfig] configure end=org.springframework.security.config.annotation.web.builders.HttpSecurity@504ae369
+[2017-12-13 16:54:47,570][INFO][restartedMain][InPossibleApplication] Started InPossibleApplication in 63.22 seconds (JVM running for 70.83)
+[2017-12-13 16:55:00,171][DEBUG][http-nio-8008-exec-1][AnalysisServerUtil] getServerUrl[PYTHON]: Optional[http://127.0.0.1:8002]
+[2017-12-13 16:55:00,349][DEBUG][http-nio-8008-exec-1][NetworkUtil] testUrl[http://127.0.0.1:8002]: true
+[2017-12-13 16:55:00,349][DEBUG][http-nio-8008-exec-1][AnalysisServerUtil] testServerAvailable[PYTHON]: true
+[2017-12-13 16:55:00,364][DEBUG][http-nio-8008-exec-1][ServerStatusCache] getServerStatus[PYTHON]=true
+[2017-12-13 16:55:00,365][DEBUG][http-nio-8008-exec-1][AnalysisServerUtil] getServerUrl[R]: Optional.empty
+[2017-12-13 16:55:00,366][DEBUG][http-nio-8008-exec-1][AnalysisServerUtil] testServerAvailable[R]: false
+[2017-12-13 16:55:00,366][DEBUG][http-nio-8008-exec-1][ServerStatusCache] getServerStatus[R]=false
+[2017-12-13 16:55:00,395][DEBUG][http-nio-8008-exec-1][UserInfoService] findUserInfoById[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={}, apis={})]
+[2017-12-13 16:55:00,396][DEBUG][http-nio-8008-exec-1][IndexController] index[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={}, apis={})]
+[2017-12-13 16:55:00,397][DEBUG][http-nio-8008-exec-1][IndexController] Index Show Userinfo=UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={}, apis={})
+[2017-12-13 16:55:00,397][DEBUG][http-nio-8008-exec-1][IndexController] projectTotal=0,apiTotal=0
+[2017-12-13 16:55:08,782][DEBUG][http-nio-8008-exec-8][AnalysisServerUtil] getServerUrl[PYTHON]: Optional[http://127.0.0.1:8002]
+[2017-12-13 16:55:08,802][DEBUG][http-nio-8008-exec-8][NetworkUtil] testUrl[http://127.0.0.1:8002]: true
+[2017-12-13 16:55:08,802][DEBUG][http-nio-8008-exec-8][AnalysisServerUtil] testServerAvailable[PYTHON]: true
+[2017-12-13 16:55:08,804][DEBUG][http-nio-8008-exec-8][ServerStatusCache] getServerStatus[PYTHON]=true
+[2017-12-13 16:55:08,806][DEBUG][http-nio-8008-exec-8][AnalysisServerUtil] getServerUrl[R]: Optional.empty
+[2017-12-13 16:55:08,806][DEBUG][http-nio-8008-exec-8][AnalysisServerUtil] testServerAvailable[R]: false
+[2017-12-13 16:55:08,807][DEBUG][http-nio-8008-exec-8][ServerStatusCache] getServerStatus[R]=false
+[2017-12-13 16:55:08,808][DEBUG][http-nio-8008-exec-8][UserInfoService] findUserInfoById[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={}, apis={})]
+[2017-12-13 16:55:08,808][DEBUG][http-nio-8008-exec-8][ProjectManagementController] index[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={}, apis={})]
+[2017-12-13 16:55:08,809][DEBUG][http-nio-8008-exec-8][ProjectManagementController] collection__projectList=[]
+[2017-12-13 16:56:48,727][DEBUG][http-nio-8008-exec-4][AnalysisServerUtil] getServerUrl[PYTHON]: Optional[http://127.0.0.1:8002]
+[2017-12-13 16:56:48,773][DEBUG][http-nio-8008-exec-4][NetworkUtil] testUrl[http://127.0.0.1:8002]: true
+[2017-12-13 16:56:48,775][DEBUG][http-nio-8008-exec-4][AnalysisServerUtil] testServerAvailable[PYTHON]: true
+[2017-12-13 16:56:48,776][DEBUG][http-nio-8008-exec-4][ServerStatusCache] getServerStatus[PYTHON]=true
+[2017-12-13 16:56:48,777][DEBUG][http-nio-8008-exec-4][AnalysisServerUtil] getServerUrl[R]: Optional.empty
+[2017-12-13 16:56:48,778][DEBUG][http-nio-8008-exec-4][AnalysisServerUtil] testServerAvailable[R]: false
+[2017-12-13 16:56:48,781][DEBUG][http-nio-8008-exec-4][ServerStatusCache] getServerStatus[R]=false
+[2017-12-13 16:56:48,825][DEBUG][http-nio-8008-exec-4][UserInfoService] findUserInfoById[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={}, apis={})]
+[2017-12-13 16:56:48,826][DEBUG][http-nio-8008-exec-4][ProjectManagementController] index[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={}, apis={})]
+[2017-12-13 16:56:48,830][DEBUG][http-nio-8008-exec-4][ProjectManagementController] collection__projectList=[]
+[2017-12-13 16:56:56,833][DEBUG][http-nio-8008-exec-8][AnalysisServerUtil] getServerUrl[PYTHON]: Optional[http://127.0.0.1:8002]
+[2017-12-13 16:56:56,862][DEBUG][http-nio-8008-exec-8][NetworkUtil] testUrl[http://127.0.0.1:8002]: true
+[2017-12-13 16:56:56,863][DEBUG][http-nio-8008-exec-8][AnalysisServerUtil] testServerAvailable[PYTHON]: true
+[2017-12-13 16:56:56,863][DEBUG][http-nio-8008-exec-8][ServerStatusCache] getServerStatus[PYTHON]=true
+[2017-12-13 16:56:56,864][DEBUG][http-nio-8008-exec-8][AnalysisServerUtil] getServerUrl[R]: Optional.empty
+[2017-12-13 16:56:56,865][DEBUG][http-nio-8008-exec-8][AnalysisServerUtil] testServerAvailable[R]: false
+[2017-12-13 16:56:56,865][DEBUG][http-nio-8008-exec-8][ServerStatusCache] getServerStatus[R]=false
+[2017-12-13 16:56:56,884][DEBUG][http-nio-8008-exec-8][ProjectManagementController] doCreateProject,CreateProjectParam=ProjectManagementController.CreateProjectParam(projectName=InPossible, projectType=regression)
+[2017-12-13 16:56:56,884][DEBUG][http-nio-8008-exec-8][ProjectManagementController] /create-projectaction=Create Project userId=alice
+[2017-12-13 16:56:56,884][DEBUG][http-nio-8008-exec-8][ProjectInfoService] CreateProjectParam param=ProjectManagementController.CreateProjectParam(projectName=InPossible, projectType=regression)
+[2017-12-13 16:56:56,885][DEBUG][http-nio-8008-exec-8][ProjectInfoService] After_UUID_projectId=57abe003-509d-414f-ac64-ff143dcc4adb
+[2017-12-13 16:56:56,935][DEBUG][http-nio-8008-exec-8][ProjectManagementController] /create-projectaction=doCreateProject_ projectService.buildProjectInfo=ProjectInfo(index=null, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])
+[2017-12-13 16:56:56,940][DEBUG][http-nio-8008-exec-8][ProjectManagementController] /create-projectaction=doCreateProject_ projectInfo=ProjectInfo(index=null, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])
+[2017-12-13 16:56:56,947][DEBUG][http-nio-8008-exec-8][UserInfoService] addProject ProjectInfo=ProjectInfo(index=null, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])
+[2017-12-13 16:56:56,975][DEBUG][http-nio-8008-exec-8][UserInfoService] findUserInfoById[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={}, apis={})]
+[2017-12-13 16:56:56,982][DEBUG][http-nio-8008-exec-8][UserInfoService] addProject to userInfo=UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={}, apis={})
+[2017-12-13 16:56:57,040][DEBUG][http-nio-8008-exec-8][UserEntityBuilder] input=UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={}, apis={})
+[2017-12-13 16:56:57,070][DEBUG][http-nio-8008-exec-8][UserEntityBuilder] result=UserEntity(userIndex=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=ADMIN,USER, projects=[], apis=[])
+[2017-12-13 16:56:57,085][DEBUG][http-nio-8008-exec-8][ProjectEntityBuilder] input=ProjectInfo(index=null, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])
+[2017-12-13 16:56:57,111][DEBUG][http-nio-8008-exec-8][ProjectEntityBuilder] result=ProjectEntity(projectIndex=null, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])
+[2017-12-13 16:56:57,194][DEBUG][http-nio-8008-exec-8][UserInfoService] addProject ProjectEntity=ProjectEntity(projectIndex=1, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])
+[2017-12-13 16:56:57,194][DEBUG][http-nio-8008-exec-8][UserInfoService] AfterSetIndexFromDB_ProjectInfo=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])
+[2017-12-13 16:56:57,194][DEBUG][http-nio-8008-exec-8][UserInfoService] add_info_id=57abe003-509d-414f-ac64-ff143dcc4adb
+[2017-12-13 16:56:57,195][DEBUG][http-nio-8008-exec-8][UserInfoService] afterPutNewProject_userInfo=UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={57abe003-509d-414f-ac64-ff143dcc4adb=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])}, apis={})
+[2017-12-13 16:56:57,195][DEBUG][http-nio-8008-exec-8][ProjectInfoService] After_DB_CREATE_PROJECT_return void
+[2017-12-13 16:56:57,195][DEBUG][http-nio-8008-exec-8][ProjectManagementController] after_call_projctService_addProjec=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])
+[2017-12-13 16:56:57,195][DEBUG][http-nio-8008-exec-8][UserInfoService] findUserInfoById[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={57abe003-509d-414f-ac64-ff143dcc4adb=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])}, apis={})]
+[2017-12-13 16:56:57,196][DEBUG][http-nio-8008-exec-8][ProjectManagementController] /create-projectaction=Create Project addProjectInfoInUserInfo = [ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])]
+[2017-12-13 16:56:59,498][DEBUG][http-nio-8008-exec-6][ServerStatusCache] getServerStatus[PYTHON]=true
+[2017-12-13 16:56:59,498][DEBUG][http-nio-8008-exec-6][ServerStatusCache] getServerStatus[R]=false
+[2017-12-13 16:56:59,505][DEBUG][http-nio-8008-exec-6][ProjectController] user=alice, project=57abe003-509d-414f-ac64-ff143dcc4adb
+[2017-12-13 16:56:59,506][DEBUG][http-nio-8008-exec-6][UserInfoService] findUserInfoById[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={57abe003-509d-414f-ac64-ff143dcc4adb=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])}, apis={})]
+[2017-12-13 16:56:59,508][DEBUG][http-nio-8008-exec-6][UserInfoService] findUserInfoById[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={57abe003-509d-414f-ac64-ff143dcc4adb=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])}, apis={})]
+[2017-12-13 16:56:59,510][DEBUG][http-nio-8008-exec-6][AnalysisServerUtil] server=PYTHON, path=/user, args=[alice, csv]
+[2017-12-13 16:56:59,511][DEBUG][http-nio-8008-exec-6][AnalysisServerUtil] getServerUrl[PYTHON]: Optional[http://127.0.0.1:8002]
+[2017-12-13 16:56:59,522][DEBUG][http-nio-8008-exec-6][AnalysisServerUtil] buildUrl=http://127.0.0.1:8002/user/alice/csv
+[2017-12-13 16:56:59,522][DEBUG][http-nio-8008-exec-6][UserCsvService] url=http://127.0.0.1:8002/user/alice/csv/57abe003-509d-414f-ac64-ff143dcc4adb
+[2017-12-13 16:56:59,743][DEBUG][http-nio-8008-exec-6][LogRequestResponseFilter] REQ[GET](http://127.0.0.1:8002/user/alice/csv/57abe003-509d-414f-ac64-ff143dcc4adb)
+[2017-12-13 16:56:59,772][DEBUG][http-nio-8008-exec-6][LogRequestResponseFilter] RES[200-OK]: {"status":"ok","description":"Get files successfully","csv_files":[]}
+[2017-12-13 16:56:59,813][DEBUG][http-nio-8008-exec-6][AnalysisServerUtil] server=PYTHON, path=/user, args=[alice, model]
+[2017-12-13 16:56:59,814][DEBUG][http-nio-8008-exec-6][AnalysisServerUtil] getServerUrl[PYTHON]: Optional[http://127.0.0.1:8002]
+[2017-12-13 16:56:59,815][DEBUG][http-nio-8008-exec-6][AnalysisServerUtil] buildUrl=http://127.0.0.1:8002/user/alice/model
+[2017-12-13 16:56:59,815][DEBUG][http-nio-8008-exec-6][UserModelService] url=http://127.0.0.1:8002/user/alice/model/57abe003-509d-414f-ac64-ff143dcc4adb
+[2017-12-13 16:56:59,892][DEBUG][http-nio-8008-exec-6][LogRequestResponseFilter] REQ[GET](http://127.0.0.1:8002/user/alice/model/57abe003-509d-414f-ac64-ff143dcc4adb)
+[2017-12-13 16:56:59,929][DEBUG][http-nio-8008-exec-6][LogRequestResponseFilter] RES[200-OK]: {"status":"ok","description":"model not found","model_list":[]}
+[2017-12-13 16:56:59,942][DEBUG][http-nio-8008-exec-6][ProjectController] toProjectPage_project=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])
+[2017-12-13 16:56:59,943][DEBUG][http-nio-8008-exec-6][ProjectController] toProject projectTypeTemp=regression
+[2017-12-13 16:56:59,943][DEBUG][http-nio-8008-exec-6][ProjectController] csvSize=0
+[2017-12-13 16:56:59,943][DEBUG][http-nio-8008-exec-6][ProjectController] toProject Page_project_after_refresh=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])
+[2017-12-13 16:56:59,943][DEBUG][http-nio-8008-exec-6][UserInfoService] findUserInfoById[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={57abe003-509d-414f-ac64-ff143dcc4adb=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])}, apis={})]
+[2017-12-13 16:56:59,944][DEBUG][http-nio-8008-exec-6][AnalysisServerUtil] server=PYTHON, path=/user, args=[alice, csv]
+[2017-12-13 16:56:59,944][DEBUG][http-nio-8008-exec-6][AnalysisServerUtil] getServerUrl[PYTHON]: Optional[http://127.0.0.1:8002]
+[2017-12-13 16:56:59,944][DEBUG][http-nio-8008-exec-6][AnalysisServerUtil] buildUrl=http://127.0.0.1:8002/user/alice/csv
+[2017-12-13 16:56:59,945][DEBUG][http-nio-8008-exec-6][UserCsvService] url=http://127.0.0.1:8002/user/alice/csv/57abe003-509d-414f-ac64-ff143dcc4adb
+[2017-12-13 16:56:59,945][DEBUG][http-nio-8008-exec-6][LogRequestResponseFilter] REQ[GET](http://127.0.0.1:8002/user/alice/csv/57abe003-509d-414f-ac64-ff143dcc4adb)
+[2017-12-13 16:56:59,959][DEBUG][http-nio-8008-exec-6][LogRequestResponseFilter] RES[200-OK]: {"status":"ok","description":"Get files successfully","csv_files":[]}
+[2017-12-13 16:56:59,960][DEBUG][http-nio-8008-exec-6][AnalysisServerUtil] server=PYTHON, path=/user, args=[alice, model]
+[2017-12-13 16:56:59,961][DEBUG][http-nio-8008-exec-6][AnalysisServerUtil] getServerUrl[PYTHON]: Optional[http://127.0.0.1:8002]
+[2017-12-13 16:56:59,961][DEBUG][http-nio-8008-exec-6][AnalysisServerUtil] buildUrl=http://127.0.0.1:8002/user/alice/model
+[2017-12-13 16:56:59,961][DEBUG][http-nio-8008-exec-6][UserModelService] url=http://127.0.0.1:8002/user/alice/model/57abe003-509d-414f-ac64-ff143dcc4adb
+[2017-12-13 16:56:59,962][DEBUG][http-nio-8008-exec-6][LogRequestResponseFilter] REQ[GET](http://127.0.0.1:8002/user/alice/model/57abe003-509d-414f-ac64-ff143dcc4adb)
+[2017-12-13 16:56:59,984][DEBUG][http-nio-8008-exec-6][LogRequestResponseFilter] RES[200-OK]: {"status":"ok","description":"model not found","model_list":[]}
+[2017-12-13 16:56:59,984][DEBUG][http-nio-8008-exec-6][ProjectController] toProject Page_project_after_refresh=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])
+[2017-12-13 16:57:06,830][DEBUG][http-nio-8008-exec-3][AnalysisServerUtil] getServerUrl[PYTHON]: Optional[http://127.0.0.1:8002]
+[2017-12-13 16:57:06,847][DEBUG][http-nio-8008-exec-3][NetworkUtil] testUrl[http://127.0.0.1:8002]: true
+[2017-12-13 16:57:06,847][DEBUG][http-nio-8008-exec-3][AnalysisServerUtil] testServerAvailable[PYTHON]: true
+[2017-12-13 16:57:06,848][DEBUG][http-nio-8008-exec-3][ServerStatusCache] getServerStatus[PYTHON]=true
+[2017-12-13 16:57:06,849][DEBUG][http-nio-8008-exec-3][AnalysisServerUtil] getServerUrl[R]: Optional.empty
+[2017-12-13 16:57:06,849][DEBUG][http-nio-8008-exec-3][AnalysisServerUtil] testServerAvailable[R]: false
+[2017-12-13 16:57:06,849][DEBUG][http-nio-8008-exec-3][ServerStatusCache] getServerStatus[R]=false
+[2017-12-13 16:57:06,849][DEBUG][http-nio-8008-exec-3][UserInfoService] findUserInfoById[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={57abe003-509d-414f-ac64-ff143dcc4adb=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])}, apis={})]
+[2017-12-13 16:57:06,849][DEBUG][http-nio-8008-exec-3][IndexController] index[alice]=Optional[UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={57abe003-509d-414f-ac64-ff143dcc4adb=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])}, apis={})]
+[2017-12-13 16:57:06,850][DEBUG][http-nio-8008-exec-3][IndexController] Index Show Userinfo=UserInfo(index=5, id=alice, name=alice, email=inanalysis.github.io@gmail.com, password=alice, roles=[ADMIN, USER], projects={57abe003-509d-414f-ac64-ff143dcc4adb=ProjectInfo(index=1, deleteUrl=/delete-project/project/57abe003-509d-414f-ac64-ff143dcc4adb, id=57abe003-509d-414f-ac64-ff143dcc4adb, name=InPossible, type=regression, csvs=[], models=[])}, apis={})
+[2017-12-13 16:57:06,850][DEBUG][http-nio-8008-exec-3][IndexController] projectTotal=1,apiTotal=0

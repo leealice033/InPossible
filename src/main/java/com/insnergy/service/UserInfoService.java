@@ -33,7 +33,7 @@ import com.insnergy.vo.ModelInfo;
 import com.insnergy.vo.ProjectInfo;
 import com.insnergy.vo.UserInfo;
 import com.insnergy.vo.builder.UserInfoBuilder;
-import com.insnergy.web.RegistrationController.CreateAccountParam;
+
 
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -230,26 +230,26 @@ public class UserInfoService {
                                  .findAny();
   }
   
-  public void addUser(@NonNull CreateAccountParam param) {
-    log.debug("addUser CreateAccountParam={}", param);
-    UserInfo userInfo = UserInfo.builder()
-                                .id(param.getStudentId())
-                                .name(param.getUserName())
-                                .email(param.getEmail())
-                                .role("USER")
-                                .password(param.getPassword())
-                                .projects(new HashMap<String, ProjectInfo>())
-                                .apis(new HashMap<String, ApiInfo>())
-                                .build();
-    
-    UserEntity userEntity = UserEntityBuilder.build(userInfo);
-    
-    UserEntity savedUserEntity = userRepo.save(userEntity);
-    
-    userInfo.setIndex(savedUserEntity.getUserIndex());
-    log.debug("AfterSetIndexFromDB_UserInfo={}", userInfo);
-    userMap.put(userInfo.getId(), userInfo);
-  }
+//  public void addUser(@NonNull CreateAccountParam param) {
+//    log.debug("addUser CreateAccountParam={}", param);
+//    UserInfo userInfo = UserInfo.builder()
+//                                .id(param.getStudentId())
+//                                .name(param.getUserName())
+//                                .email(param.getEmail())
+//                                .role("USER")
+//                                .password(param.getPassword())
+//                                .projects(new HashMap<String, ProjectInfo>())
+//                                .apis(new HashMap<String, ApiInfo>())
+//                                .build();
+//    
+//    UserEntity userEntity = UserEntityBuilder.build(userInfo);
+//    
+//    UserEntity savedUserEntity = userRepo.save(userEntity);
+//    
+//    userInfo.setIndex(savedUserEntity.getUserIndex());
+//    log.debug("AfterSetIndexFromDB_UserInfo={}", userInfo);
+//    userMap.put(userInfo.getId(), userInfo);
+//  }
   
   public void addProject(@NonNull String userId, ProjectInfo projectInfo) {
     log.debug("addProject ProjectInfo={}", projectInfo);

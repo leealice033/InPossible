@@ -5,7 +5,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>InAnalysis</title>
+<title>InPossible</title>
 <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 </head>
@@ -30,17 +30,7 @@
             <span class="label label-danger">OFF</span>
           </li>
 
-          <li th:if="${rServerStatus}" class="list-group-item list-group-item-success">
-            <i class="fa fa-cubes" aria-hidden="true"></i>
-            R Server
-            <span class="label label-success">ON</span>
-            <span class="label label-warning" th:if="${!rServerStatus}">OFF</span>
-          </li>
-          <li th:if="${!rServerStatus}" class="list-group-item list-group-item-danger">
-            <i class="fa fa-cubes" aria-hidden="true"></i>
-            R Server
-            <span class="label label-danger">OFF</span>
-          </li>
+          
         </ul>
       </div>
       <!-- /col-md-2 col-md-push-10 for serverStatus -->
@@ -66,32 +56,20 @@
                     <input type="radio" name="server" value="PYTHON" checked="checked" />
                     Python
                   </label>
-                  <label th:if="${rServerStatus}" class="btn btn-default">
-                    <input type="radio" name="server" value="R" />
-                    R
-                  </label>
+                 
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="createProjectType">Project Type</label>
                 <div id="createProjectType" class="btn-group" data-toggle="buttons">
-                  <label class="btn btn-default active">
-                    <input type="radio" name="projectType" value="abnormal-detection" checked="checked" />
-                    Abnormal Detection
-                  </label>
+
                   <label class="btn btn-default">
                     <input type="radio" name="projectType" value="regression" />
                     Regression
                   </label>
-                  <label class="btn btn-default">
-                    <input type="radio" name="projectType" value="classification" />
-                    Classification
-                  </label>
-                  <label class="btn btn-default">
-                    <input type="radio" name="projectType" value="clustering" />
-                    Clustering
-                  </label>
+
+
                 </div>
               </div>
 
@@ -224,7 +202,7 @@
         <!-- //CLASS="panel panel-default" MY PROJECT -->
 
         <footer class="text-right">
-          <p>Copyright &copy; InAnalysis | Designed by Alice</p>
+          <p>Copyright &copy; InPossible | Designed by Alice</p>
           <!-- 回到上方的連結 -->
           <ul class="nav pull-right scroll-top">
             <li>
