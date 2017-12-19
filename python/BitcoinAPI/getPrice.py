@@ -1,5 +1,5 @@
 import requests
-
+import numpy as np
 def get_data(period='1hr', type='BTC'):
     acceptedType = ['BTC', 'ETH', 'LTC']
     acceptedPeriod = {'1hr': 60, '12hr': 60*12, '24hr': 60*24, '7days': 24*7, '30days': 24*30}
@@ -18,10 +18,12 @@ def get_data(period='1hr', type='BTC'):
     data = response['Data']
     for i in data:
         timePriceDict['timestamp'].append(i['time']+8*60)
-        timePriceDict['price'].append(i['open'])
+        timePriceDict['price'].append(i['high'])
+    timePriceDict['timestamp'] = np.array(timePriceDict['timestamp'])
+    timePriceDict['price'] = np.array(timePriceDict['price'])
     return timePriceDict
 
 if __name__ == "__main__":
     a = get_data('7days', 'LTC')
-    print(a['timestamp'])
+    print(type(a['timestamp']))
     print(a['price'])
