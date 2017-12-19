@@ -1,5 +1,6 @@
 package com.inpossible.service.rest;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -7,21 +8,26 @@ import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.inpossible.service.rest.MovingAverageService.MovingAverage;
 import com.inpossible.service.rest.MovingAverageService.PostDoMaInput;
 import com.inpossible.service.rest.MovingAverageService.PostDoMaOutput;
 
+@Ignore
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class MovingAverageServiceTest {
   private static String defaultCoin = "BTC/USD";
   private static String defaultZoom = "Day";
   @Autowired
   private MovingAverageService maService;
   
-  @Ignore
   @Test
-  public void test() {
+  public void testGetMAChart() {
     
     MovingAverage defaultSMA = MovingAverage.builder()
                                             .algorithm("SMA")
@@ -43,19 +49,20 @@ public class MovingAverageServiceTest {
                                               .zoom(defaultZoom)
                                               .ma(defaultMaList)
                                               .build();
-    System.out.println("defaultInput=" + defaultInput);
-    if (maService.postDoMovingAverage(defaultInput)
-                 .isPresent()) {
-      PostDoMaOutput doMaOutput = maService.postDoMovingAverage(defaultInput)
-                                           .get();
-      String imageUrl = doMaOutput.getImagePath();
-      System.out.println("output=" + doMaOutput);
-      System.out.println("ma_image=" + imageUrl);
-      
+    String imageUrl = null;
+    if (defaultInput != null) {
+      System.out.println("defaultInput=" + defaultInput);
+      if (maService.postDoMovingAverage(defaultInput)
+                   .isPresent()) {
+        PostDoMaOutput output = maService.postDoMovingAverage(defaultInput)
+                                         .get();
+        System.out.println("output=" + output);
+        imageUrl = output.getImagePath();
+      }
     } else {
       System.out.println("fail");
     }
-    
+    assertThat(imageUrl).isEqualTo("download/chart");
   }
   
 }

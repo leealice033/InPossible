@@ -90,10 +90,10 @@ public class MovingAverageService {
     String image_path;
   }
   
-  public Optional<PostDoMaOutput> postDoMovingAverage(PostDoMaInput input) {
+  public Optional<PostDoMaOutput> postDoMovingAverage(@NonNull PostDoMaInput input) {
     PostDoMaOutput result = null;
     try {
-      log.debug("inpu={}", input);
+      log.debug("input={}", input);
       final String serverUrl = PYTHON + PATH;
       log.debug("pythonUrl={}", serverUrl);
       final PostDoMaRequest req = PostDoMaRequest.builder()
