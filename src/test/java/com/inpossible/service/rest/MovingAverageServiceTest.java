@@ -1,34 +1,28 @@
-package com.inpossible.web;
+package com.inpossible.service.rest;
+
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.inpossible.service.rest.MovingAverageService;
 import com.inpossible.service.rest.MovingAverageService.MovingAverage;
 import com.inpossible.service.rest.MovingAverageService.PostDoMaInput;
 import com.inpossible.service.rest.MovingAverageService.PostDoMaOutput;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Controller
-@Slf4j
-public class IndexController {
-  static final String PATH = "/inpossible";
-  private final MovingAverageService maService;
+public class MovingAverageServiceTest {
   private static String defaultCoin = "BTC/USD";
   private static String defaultZoom = "Day";
+  @Autowired
+  private MovingAverageService maService;
   
-  public IndexController(MovingAverageService maService) {
-    this.maService = maService;
-  }
-  
-  @GetMapping("/")
-  public String toIndexPage(Model model) {
-    log.debug("enter_{}", PATH);
+  @Ignore
+  @Test
+  public void test() {
+    
     MovingAverage defaultSMA = MovingAverage.builder()
                                             .algorithm("SMA")
                                             .show(true)
@@ -49,18 +43,19 @@ public class IndexController {
                                               .zoom(defaultZoom)
                                               .ma(defaultMaList)
                                               .build();
+    System.out.println("defaultInput=" + defaultInput);
     if (maService.postDoMovingAverage(defaultInput)
                  .isPresent()) {
       PostDoMaOutput doMaOutput = maService.postDoMovingAverage(defaultInput)
                                            .get();
       String imageUrl = doMaOutput.getImage();
-      log.debug("doMaOutput={}", doMaOutput);
-      log.debug("doMaOutput_imageUrl={}", imageUrl);
-      model.addAttribute("imageUrl",imageUrl);
+      System.out.println("output=" + doMaOutput);
+      System.out.println("ma_image=" + imageUrl);
+      
     } else {
-      log.error("fail");
+      System.out.println("fail");
     }
-    return "index";
+    
   }
   
 }

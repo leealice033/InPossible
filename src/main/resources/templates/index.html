@@ -56,7 +56,7 @@
     <div class="row">
       <div id="mainCol" class="col-md-12">
         <form method="POST" action="/inpossible">
-
+          <input type="hidden" th:if="${imageUrl!=null}" name="imageUrl" th:value="${imageUrl}" />
           <!-- --******************COIN************************************ -->
           <div class="panel panel-info">
             <div class="panel-heading">
@@ -168,32 +168,24 @@
                   <table class="table table-bordered" id="feature-selection-list">
                     <thead>
                       <tr>
-                        <th>Show</th>
                         <th>Algorithm</th>
+                        <th>Time</th>
                         <th>RMS</th>
                         <th>Accuracy</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>
-                          <div class="custom-checkbox">
-                            <input type="checkbox" name="algorithm" value="algorithmA" />
-                          </div>
-                        </td>
                         <td>Linear Regression</td>
+                        <td>2017-12-19-15:00</td>
                         <td>1.5</td>
                         <td>95%</td>
 
                       </tr>
 
                       <tr>
-                        <td>
-                          <div class="custom-checkbox">
-                            <input type="checkbox" name="algorithm" value="algorithmB" />
-                          </div>
-                        </td>
-                        <td></td>
+                        <td>Polynomial Regression</td>
+                        <td>2017-12-19-15:00</td>
                         <td>1.3</td>
                         <td>90%</td>
                       </tr>
@@ -249,7 +241,7 @@
   <script src="/webjars/jquery/jquery.min.js"></script>
   <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
   <script>
-			$('#select_all1').change(function() {
+			$('#select_all').change(function() {
 				var checkboxes = $(this).closest('form').find(':checkbox');
 				checkboxes.prop('checked', $(this).is(':checked'));
 			});
