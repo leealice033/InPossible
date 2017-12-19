@@ -112,16 +112,15 @@
                       <tr>
                         <td>
                           <div class="custom-checkbox">
-                            <input type="checkbox" name="algorithm" value="algorithmA" />
+                            <input type="checkbox" name="ma_algorithm" value="SMA" />
                           </div>
                         </td>
                         <td>Simple Moving Average, SMA</td>
                         <td>
-                          <select class="form-control" id="period">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                          <select class="form-control" name="SMA_period" id="period">
+                            <option value="30">30min</option>
+                            <option value="60">1h</option>
+                            <option value="120">2h</option>
                           </select>
                         </td>
 
@@ -130,16 +129,15 @@
                       <tr>
                         <td>
                           <div class="custom-checkbox">
-                            <input type="checkbox" name="algorithm" value="algorithmB" />
+                            <input type="checkbox" name="ma_algorithm" value="EMA" />
                           </div>
                         </td>
                         <td>Exponential Moving Average, EMA</td>
                         <td>
-                          <select class="form-control" id="period">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                          <select class="form-control" name="EMA_period" id="period">
+                            <option value="30">30min</option>
+                            <option value="60">1h</option>
+                            <option value="120">2h</option>
                           </select>
                         </td>
                       </tr>
@@ -150,8 +148,12 @@
               </div>
               <!-- /panel body -->
             </div>
+            <div class="form-inline">
+              <input type="submit" class="showLoadingIcon btn btn-primary" name="action" value="Refresh"></input>
+            </div>
             <!-- /div th:if -->
           </div>
+
           <!-- /panel-info -->
 
           <!-- --******************ML************************************ -->
@@ -215,7 +217,16 @@
           </div>
           <div>
             <div class="panel-body">
-              <img class="img-responsive" src="/images/bitcoin.jpg" />
+              <div th:if="${imageUrl}">
+                <img class="img-responsive" th:src="${imageUrl}" />
+                <a th:href="${imageUrl}" target="_blank">
+                  Download Image
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div th:if="${imageUrl==null}">
+                <img th:if="${imageUrl==null}" class="img-responsive" src="/images/bitcoin.jpg" />
+              </div>
             </div>
             <!-- /panel body -->
           </div>
@@ -245,6 +256,11 @@
 				var checkboxes = $(this).closest('form').find(':checkbox');
 				checkboxes.prop('checked', $(this).is(':checked'));
 			});
+		</script>
+  <script type="text/javascript">
+			setTimeout(function() {
+				location = ''
+			}, 60000)
 		</script>
 
 </body>

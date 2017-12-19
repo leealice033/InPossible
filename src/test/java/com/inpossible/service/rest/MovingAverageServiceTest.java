@@ -48,7 +48,7 @@ public class MovingAverageServiceTest {
                  .isPresent()) {
       PostDoMaOutput doMaOutput = maService.postDoMovingAverage(defaultInput)
                                            .get();
-      String imageUrl = doMaOutput.getImage();
+      String imageUrl = doMaOutput.getImagePath();
       System.out.println("output=" + doMaOutput);
       System.out.println("ma_image=" + imageUrl);
       

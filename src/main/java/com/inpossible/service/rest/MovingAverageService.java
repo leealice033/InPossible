@@ -73,7 +73,7 @@ public class MovingAverageService {
     @NonNull
     String description;
     
-    String image;
+    String imagePath;
   }
   
   @Data
@@ -87,7 +87,7 @@ public class MovingAverageService {
     @NonNull
     String description;
     
-    String image;
+    String image_path;
   }
   
   public Optional<PostDoMaOutput> postDoMovingAverage(PostDoMaInput input) {
@@ -110,7 +110,7 @@ public class MovingAverageService {
         result = PostDoMaOutput.builder()
                                .status(res.getStatus())
                                .description(res.getDescription())
-                               .image(res.getImage())
+                               .imagePath(res.getImage_path())
                                .build();
       }
     } catch (Exception e) {
