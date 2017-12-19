@@ -2,6 +2,8 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.finance as mpf
+import matplotlib.dates as md
+import datetime as dt
 #@param data 
 def getsma(data, smaPeriod):
     """returned a numpy array of sma
@@ -51,15 +53,25 @@ def getplot(*args):
     @args[3]: list of length of MA (5,25,60,200).Length of this list must be the same as the number of lines to be plotted
     @argv[4] : list of MA np-array to be plotted
     """
+    TIME_LABEL_DENSE=5
     timePeriod=args[0]
     data=args[1]
     matype=args[2]
     periodList=args[3]
     ma=args[4]
+    t=[]
+    for i in timePeriod:
+        date = dt.datetime.fromtimestamp(i/1e3)
+        t.append(date)
+        #t.append((md.date2num(date)))
     fig, ax = plt.subplots()
-    mpf.candlestick2_ochl(ax, data[0], data[1], data[2], data[3], width=0.5, colorup='k', colordown='r', alpha=0.75)
+    plt.subplots_adjust(bottom=0.2)
+    plt.xticks(rotation=25)
+    ax.set_xticks(range(0, len(t), TIME_LABEL_DENSE))
+    ax.set_xticklabels(t[::TIME_LABEL_DENSE])
     for i in range(len(ma)):
         plt.plot(ma[i],label=(str(periodList[i])+' '+matype))
+    mpf.candlestick2_ochl(ax, data[0], data[1], data[2], data[3], width=0.5, colorup='r', colordown='g', alpha=0.75)
     plt.legend()
     plt.show()
 
@@ -91,10 +103,11 @@ def main(*argv):
         elif matype is 'WMA':
             maList.append(getwma(c,maPeriodList[i]))
     getplot(time,dataList,matype,maPeriodList,maList)
-''' 
+
 if __name__ == "__main__":
    main(sys.argv[1:])
 '''
-a=np.linspace(1,100,100)
-b=np.random.rand(100,1)
+a=np.linspace(1513641600,1513704540,200)
+b=np.random.rand(200,1)
 main(a,b,5,'SMA',3,5)
+'''
