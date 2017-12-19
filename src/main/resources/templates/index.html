@@ -112,14 +112,17 @@
                   <div class="form-inline">
                     <label for="coin">Coin</label>
                     <select id="coin" class="form-control" name="coin">
-                      <option value="BTC/USD">BTC/USD</option>
-                      <option value="LTC/USD">LTC/USD</option>
+                      <option value="BTC">BTC/USD</option>
+                      <option value="ETH">ETH/USD</option>
+                      <option value="LTC">LTC/USD</option>
                     </select>
                     <label for="zoom">Zoom</label>
                     <select id="zoom" class="form-control" name="zoom">
-                      <option value="hour">Hour</option>
-                      <option value="day">Day</option>
-                      <option value="month">Month"</option>
+                      <option value="1hr">1 Hour</option>
+                      <option value="12hr">12 Hour</option>
+                      <option value="24hr">Day</option>
+                      <option value="7days">Week</option>
+                      <option value="30days">Month</option>
                     </select>
                   </div>
                 </div>
@@ -159,7 +162,7 @@
                         <td>Simple Moving Average, SMA</td>
                         <td>
                           <select class="form-control" name="SMA_period" id="period">
-                            <option value="30">30min</option>
+                            <option value="10">10min</option>
                             <option value="60">1h</option>
                             <option value="120">2h</option>
                           </select>
@@ -176,7 +179,7 @@
                         <td>Exponential Moving Average, EMA</td>
                         <td>
                           <select class="form-control" name="EMA_period" id="period">
-                            <option value="30">30min</option>
+                            <option value="10">10min</option>
                             <option value="60">1h</option>
                             <option value="120">2h</option>
                           </select>

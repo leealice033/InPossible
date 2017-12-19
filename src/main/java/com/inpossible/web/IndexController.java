@@ -23,8 +23,9 @@ public class IndexController {
   private static final String PYTHON = "http://127.0.0.1:8000";
   static final String PATH = "/inpossible";
   private final MovingAverageService maService;
-  private static String defaultCoin = "BTC/USD";
-  private static String defaultZoom = "Day";
+  private static String defaultCoin = "BTC";
+  private static String defaultZoom = "1hr";//FIXME
+  private static Integer defaultPeriod = 10;
   
   public IndexController(MovingAverageService maService) {
     this.maService = maService;
@@ -36,12 +37,12 @@ public class IndexController {
     MovingAverage defaultSMA = MovingAverage.builder()
                                             .algorithm("SMA")
                                             .show(true)
-                                            .period(30)
+                                            .period(defaultPeriod)
                                             .build();
     MovingAverage defaultEMA = MovingAverage.builder()
                                             .algorithm("EMA")
                                             .show(true)
-                                            .period(30)
+                                            .period(defaultPeriod)
                                             .build();
     
     List<MovingAverage> defaultMaList = new ArrayList<>();
@@ -95,15 +96,15 @@ public class IndexController {
             ema_object = buildDefaultMAObject("EMA", true, EMA_period);
             break;
           default:
-            sma_object = buildDefaultMAObject("SMA", true, 30);
-            ema_object = buildDefaultMAObject("EMA", true, 30);
+            sma_object = buildDefaultMAObject("SMA", true, defaultPeriod);
+            ema_object = buildDefaultMAObject("EMA", true, defaultPeriod);
             break;
         }
       }
       
     } else {
-      sma_object = buildDefaultMAObject("SMA", true, 30);
-      ema_object = buildDefaultMAObject("EMA", true, 30);
+      sma_object = buildDefaultMAObject("SMA", true, defaultPeriod);
+      ema_object = buildDefaultMAObject("EMA", true, defaultPeriod);
     }
     
     List<MovingAverage> maList = new ArrayList<>();
