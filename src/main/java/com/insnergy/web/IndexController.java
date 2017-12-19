@@ -21,6 +21,9 @@ public class IndexController {
   
   private final UserInfoService userService;
   private final ServerStatusCache serverStatusCache;
+  static final String defaultUser ="alice";
+  static final String defaultProjectId = "";
+  static final String defaultType = "regression";
   
   public IndexController(UserInfoService userService, ServerStatusCache serverStatusCache) {
     this.userService = userService;
@@ -46,7 +49,7 @@ public class IndexController {
   
   @GetMapping("/")
   public String index(Model model, Principal principal) {
-    final String userId = principal.getName();
+    final String userId = defaultUser;
     
     Optional<UserInfo> _user = userService.findUserInfoById(userId);
     log.debug("index[{}]={}", userId, _user);

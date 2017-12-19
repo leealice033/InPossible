@@ -76,11 +76,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         
         .and()
         .formLogin()
-        .loginPage("/login")
+       // .loginPage("/login")//FIXME
         .permitAll()
         .and()
         .logout()
-        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+       // .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
         .permitAll()
         .and()
         .csrf()
