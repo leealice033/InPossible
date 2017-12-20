@@ -1,6 +1,8 @@
 import requests
 import datetime
-
+import time
+import csv
+import datetime
 """return a tuple (utc timestamp, bitcoin's price)"""
 def getBtcPrice():
     url = "https://api.coindesk.com/v1/bpi/currentprice.json"
@@ -29,5 +31,12 @@ def getBtcPrice():
 
 
 if __name__ == "__main__":
-    a = getBtcPrice()
-    print(a)
+   while(True):
+       timestamp, price = getBtcPrice()
+       value = datetime.datetime.fromtimestamp(timestamp)
+       print(value.strftime('%Y-%m-%d %H:%M:%S'), price)
+       new_data = [timestamp, price]
+       with open(r'bitcoin_price.csv', 'a') as f:
+           writer = csv.writer(f)
+           writer.writerow(new_data)
+       time.sleep(60)
