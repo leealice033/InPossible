@@ -173,12 +173,12 @@
                       <tr>
                         <td>
                           <div class="custom-checkbox">
-                            <input type="checkbox" name="ma_algorithm" value="EMA" />
+                            <input type="checkbox" name="ma_algorithm" value="WMA" />
                           </div>
                         </td>
-                        <td>Exponential Moving Average, EMA</td>
+                        <td>Weighting Moving Average, WMA</td>
                         <td>
-                          <select class="form-control" name="EMA_period" id="period">
+                          <select class="form-control" name="WMA_period" id="period">
                             <option value="10">10min</option>
                             <option value="60">1h</option>
                             <option value="120">2h</option>
@@ -208,33 +208,28 @@
                 Machine Learning Forecast
               </h3>
             </div>
-            <div>
+            <div th:if="${predictList!=null}">
               <div class="panel-body">
                 <div class="table-responsive">
                   <table class="table table-bordered" id="feature-selection-list">
                     <thead>
                       <tr>
                         <th>Algorithm</th>
-                        <th>Time</th>
-                        <th>RMS</th>
+                        <th>Rise/Fall</th>
+                        <th>Price</th>
                         <th>Accuracy</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Linear Regression</td>
-                        <td>2017-12-19-15:00</td>
-                        <td>1.5</td>
-                        <td>95%</td>
+                      <tr th:each="predict: ${predictList}">
+                        <td th:text="${predict.algorithm} +' regression'"></td>
+                        <td th:text="${predict.situation}"></td>
+                        <td th:text="${predict.price}"></td>
+                        <td th:text="${predict.accuracy}"></td>
 
                       </tr>
 
-                      <tr>
-                        <td>Polynomial Regression</td>
-                        <td>2017-12-19-15:00</td>
-                        <td>1.3</td>
-                        <td>90%</td>
-                      </tr>
+                   
 
 
 
@@ -268,8 +263,8 @@
                   <i class="fa fa-download" aria-hidden="true"></i>
                 </a>
               </div>
-              <div th:if="${imageUrl==null}">
-                <img th:if="${imageUrl==null}" class="img-responsive" src="/images/bitcoin.jpg" />
+              <div th:if="${imageUrl=='http://127.0.0.1:8000/'}">
+                <img th:if="${imageUrl=='http://127.0.0.1:8000/'}" class="img-responsive" src="/images/bitcoin.jpg" />
               </div>
             </div>
             <!-- /panel body -->

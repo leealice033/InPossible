@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.inpossible.service.rest.MachineLearningService;
+import com.inpossible.service.rest.MachineLearningService.GetDoRegressionOutput;
+import com.inpossible.service.rest.MachineLearningService.PredictResult;
 import com.inpossible.service.rest.MovingAverageService;
 import com.inpossible.service.rest.MovingAverageService.MovingAverage;
 import com.inpossible.service.rest.MovingAverageService.PostDoMaInput;
@@ -23,13 +26,17 @@ public class IndexController {
   private static final String PYTHON = "http://127.0.0.1:8000";
   static final String PATH = "/inpossible";
   private final MovingAverageService maService;
+  private final MachineLearningService mlService;
   private static String defaultCoin = "BTC";
-  private static String defaultZoom = "1hr";//FIXME
+  private static String defaultZoom = "1hr";// FIXME
   private static Integer defaultPeriod = 10;
   
-  public IndexController(MovingAverageService maService) {
+  public IndexController(MovingAverageService maService, MachineLearningService mlService) {
     this.maService = maService;
+    this.mlService = mlService;
   }
+  
+
   
   @GetMapping("/")
   public String toIndexPage(Model model) {
@@ -39,21 +46,23 @@ public class IndexController {
                                             .show(true)
                                             .period(defaultPeriod)
                                             .build();
-    MovingAverage defaultEMA = MovingAverage.builder()
-                                            .algorithm("EMA")
+    
+    MovingAverage defaultWMA = MovingAverage.builder()
+                                            .algorithm("WMA")
                                             .show(true)
                                             .period(defaultPeriod)
                                             .build();
     
     List<MovingAverage> defaultMaList = new ArrayList<>();
     defaultMaList.add(defaultSMA);
-    defaultMaList.add(defaultEMA);
+    defaultMaList.add(defaultWMA);
     
     PostDoMaInput defaultInput = PostDoMaInput.builder()
                                               .coin(defaultCoin)
                                               .zoom(defaultZoom)
                                               .ma(defaultMaList)
                                               .build();
+    // MA
     if (maService.postDoMovingAverage(defaultInput)
                  .isPresent()) {
       PostDoMaOutput doMaOutput = maService.postDoMovingAverage(defaultInput)
@@ -64,52 +73,72 @@ public class IndexController {
       
       model.addAttribute("imageUrl", imageUrl);
     } else {
-      log.error("fail");
+      log.error("fail_postDoMovingAverage");
     }
+    
+    // ML
+    if (mlService.doRegressionPredict(defaultInput.getCoin())
+                 .isPresent()) {
+      GetDoRegressionOutput doRegressionOutput = mlService.doRegressionPredict(defaultInput.getCoin())
+                                                          .get();
+      log.debug("doRegressionOutput={}", doRegressionOutput);
+      if (StringUtils.equals("ok", doRegressionOutput.getStatus())) {
+        List<PredictResult> predictList = doRegressionOutput.getPredictOutput();
+        log.debug("predictList={}", doRegressionOutput);
+        model.addAttribute("predictList", predictList);
+      } else {
+        log.debug("Python status={}", doRegressionOutput.getStatus());
+      }
+      
+    } else {
+      log.error("fail_doRegressionPredict");
+    }
+    
     return "index";
+    
   }
   
   @PostMapping(path = PATH, params = "action=Refresh")
-  public String updateImage(String coin, String zoom, String ma_algorithm, Integer SMA_period, Integer EMA_period,
+  public String updateImage(String coin, String zoom, String ma_algorithm, Integer SMA_period, Integer WMA_period,
       Model model, RedirectAttributes redirectAttributes) {
-    log.debug("REFRESH__fcoin={},zoom={},ma_algorithm={},SMA_period={},EMA_period={}", coin, zoom, ma_algorithm, SMA_period,
-        EMA_period);
+    log.debug("REFRESH__fcoin={},zoom={},ma_algorithm={},SMA_period={},WMA_period={}", coin, zoom, ma_algorithm,
+        SMA_period, WMA_period);
     MovingAverage sma_object = null;
-    MovingAverage ema_object = null;
+    MovingAverage wma_object = null;
     if (ma_algorithm != null) {
       if (ma_algorithm.contains(",")) {
         String[] algorithmArray = ma_algorithm.split(",");
         log.debug("algorithmArray[0]={}", algorithmArray[0]);
         log.debug("algorithmArray[1]={}", algorithmArray[1]);
         sma_object = buildDefaultMAObject("SMA", true, SMA_period);
-        ema_object = buildDefaultMAObject("EMA", true, EMA_period);
+        wma_object = buildDefaultMAObject("WMA", true, WMA_period);
       } else {
         switch (ma_algorithm) {
           case "SMA":
             
             sma_object = buildDefaultMAObject("SMA", true, SMA_period);
-            ema_object = buildDefaultMAObject("EMA", false, EMA_period);
+            wma_object = buildDefaultMAObject("WMA", false, WMA_period);
             break;
           
-          case "EMA":
+          case "WMA":
             sma_object = buildDefaultMAObject("SMA", false, SMA_period);
-            ema_object = buildDefaultMAObject("EMA", true, EMA_period);
+            wma_object = buildDefaultMAObject("WMA", true, WMA_period);
             break;
           default:
             sma_object = buildDefaultMAObject("SMA", true, defaultPeriod);
-            ema_object = buildDefaultMAObject("EMA", true, defaultPeriod);
+            wma_object = buildDefaultMAObject("WMA", true, defaultPeriod);
             break;
         }
       }
       
     } else {
       sma_object = buildDefaultMAObject("SMA", true, defaultPeriod);
-      ema_object = buildDefaultMAObject("EMA", true, defaultPeriod);
+      wma_object = buildDefaultMAObject("WMA", true, defaultPeriod);
     }
     
     List<MovingAverage> maList = new ArrayList<>();
     maList.add(sma_object);
-    maList.add(ema_object);
+    maList.add(wma_object);
     log.debug("maList_to_input={}", maList);
     PostDoMaInput doMaInput = PostDoMaInput.builder()
                                            .coin(coin)
