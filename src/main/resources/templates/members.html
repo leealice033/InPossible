@@ -18,107 +18,169 @@
 
 <script type="text/javascript" src="js/modernizr.custom.79639.js"></script>
 <!--[if lte IE 8]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
+<style type="text/css">
+/*
+
+*/
+.jumbotron {
+	background: url('../images/make_money.jpg') 0 0;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: unset;
+	background-color: black;
+	color: white;
+	margin-bottom: 50px;
+}
+
+.feature h2 {
+	font-family: "Lucida Console";
+	color: white;
+}
+
+.box {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	transform-style: preserve-3d;
+	transition: transform 1s;
+}
+
+.card {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	border-radius: 50px;
+}
+
+.front {
+	background-image: url('../images/logo_ip_mini.jpg');
+	background-position: -6px -6px;
+}
+
+.back {
+	transform: rotateY(180deg);
+	background-image: url('../images/logo_ip_mini.jpg');
+	background-position: -6px -6px;
+}
+
+.flipped {
+	transform: rotateY(180deg);
+}
+</style>
 </head>
 <body>
-	<div class="container">
+  <div id="container" class="container">
 
 
 
-		<header>
-
-			<h1>
-				<strong>Circle</strong>
-				Hover Effects
-			</h1>
-			<h2>Pretty hover effects on circles with CSS Transitions</h2>
 
 
-			<div class="support-note">
-				<!-- let's check browser support with modernizr -->
-				<!--span class="no-cssanimations">CSS animations are not supported in your browser</span-->
-				<span class="no-csstransforms">CSS transforms are not supported in your browser</span>
-				<!--span class="no-csstransforms3d">CSS 3D transforms are not supported in your browser</span-->
-				<span class="no-csstransitions">CSS transitions are not supported in your browser</span>
-				<span class="note-ie">Sorry, only modern browsers.</span>
-			</div>
 
-		</header>
+    <div class="header clearfix">
+      <nav>
+        <ul class="nav nav-pills pull-right">
+          <li role="presentation" class="active">
+            <a href="/">Home</a>
+          </li>
+          <li role="presentation">
+            <a href="#">About</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="box">
+        <div class="card front"></div>
+        <div class="card back"></div>
+      </div>
 
-		<section class="main">
 
-			<ul class="ch-grid">
-				<li>
-					<div class="ch-item">
-						<div class="ch-info">
-							<h3>Music poster</h3>
-							<p>
-								by Jonathan Quintin
-								<a href="http://www.jqshare.com">View on Dribbble</a>
-							</p>
-						</div>
-						<div class="ch-thumb ch-img-1"></div>
-					</div>
-				</li>
-				<li>
-					<div class="ch-item">
-						<div class="ch-info">
-							<h3>Beer Poster 2</h3>
-							<p>
-								by Jon Gerlach
-								<a href="http://www.jqshare.com">View on Dribbble</a>
-							</p>
-						</div>
-						<div class="ch-thumb ch-img-2"></div>
-					</div>
-				</li>
-				<li>
-					<div class="ch-item">
-						<div class="ch-info">
-							<h3>Devi Tara</h3>
-							<p>
-								by Kawal Oberoi
-								<a href="http://www.jqshare.com">View on Dribbble</a>
-							</p>
-						</div>
-						<div class="ch-thumb ch-img-3"></div>
-					</div>
-				</li>
-			</ul>
-			
-			<ul class="ch-grid">
-				<li>
-					<div class="ch-item">
-						<div class="ch-info">
-							<h3>Music poster</h3>
-							<p>
-								by Jonathan Quintin
-								<a href="http://www.jqshare.com">View on Dribbble</a>
-							</p>
-						</div>
-						<div class="ch-thumb ch-img-4"></div>
-					</div>
-				</li>
-				<li>
-					<div class="ch-item">
-						<div class="ch-info">
-							<h3>Beer Poster 2</h3>
-							<p>
-								by Jon Gerlach
-								<a href="http://www.jqshare.com">View on Dribbble</a>
-							</p>
-						</div>
-						<div class="ch-thumb ch-img-5"></div>
-					</div>
-				</li>
+    </div>
+    <div class="jumbotron">
+      <h1 class="text-muted">InPossible</h1>
+      <h3>Intelligence make everything possible!</h3>
+      <p class="lead">Let's make money</p>
+    </div>
 
-			</ul>
-		</section>
 
-	</div>
-	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
+    <section class="main">
+
+      <ul class="ch-grid">
+        <li>
+          <div class="ch-item">
+            <div class="ch-info">
+              <h3>Music poster</h3>
+              <p>
+                by Jonathan Quintin
+                <a href="http://www.jqshare.com">View on Dribbble</a>
+              </p>
+            </div>
+            <div class="ch-thumb ch-img-1"></div>
+          </div>
+        </li>
+        <li>
+          <div class="ch-item">
+            <div class="ch-info">
+              <h3>Beer Poster 2</h3>
+              <p>
+                by Jon Gerlach
+                <a href="http://www.jqshare.com">View on Dribbble</a>
+              </p>
+            </div>
+            <div class="ch-thumb ch-img-2"></div>
+          </div>
+        </li>
+        <li>
+          <div class="ch-item">
+            <div class="ch-info">
+              <h3>Devi Tara</h3>
+              <p>
+                by Kawal Oberoi
+                <a href="http://www.jqshare.com">View on Dribbble</a>
+              </p>
+            </div>
+            <div class="ch-thumb ch-img-3"></div>
+          </div>
+        </li>
+      </ul>
+
+      <ul class="ch-grid">
+        <li>
+          <div class="ch-item">
+            <div class="ch-info">
+              <h3>Music poster</h3>
+              <p>
+                by Jonathan Quintin
+                <a href="http://www.jqshare.com">View on Dribbble</a>
+              </p>
+            </div>
+            <div class="ch-thumb ch-img-4"></div>
+          </div>
+        </li>
+        <li>
+          <div class="ch-item">
+            <div class="ch-info">
+              <h3>Beer Poster 2</h3>
+              <p>
+                by Jon Gerlach
+                <a href="http://www.jqshare.com">View on Dribbble</a>
+              </p>
+            </div>
+            <div class="ch-thumb ch-img-5"></div>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+    <footer class="text-right">
+      <p>Copyright &copy; InPossible | Designed by Alice</p>
+    </footer>
+
+  </div>
+  <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
         /* Modernizr 2.5.3 (Custom Build) | MIT & BSD
          * Build: http://www.modernizr.com/download/#-cssanimations-csstransforms-csstransforms3d-csstransitions-shiv-cssclasses-teststyles-testprop-testallprops-prefixes-domprefixes
          */
