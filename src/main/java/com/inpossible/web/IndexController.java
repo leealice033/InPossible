@@ -23,20 +23,20 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class IndexController {
+  //http://ntuesoe.com:8000"
+  private static final String ICAN = "http://ntuesoe.com:8000";
   private static final String PYTHON = "http://127.0.0.1:8000";
   static final String PATH = "/inpossible";
   private final MovingAverageService maService;
   private final MachineLearningService mlService;
   private static String defaultCoin = "BTC";
-  private static String defaultZoom = "1hr";// FIXME
+  private static String defaultZoom = "24hr";// FIXME
   private static Integer defaultPeriod = 10;
   
   public IndexController(MovingAverageService maService, MachineLearningService mlService) {
     this.maService = maService;
     this.mlService = mlService;
   }
-  
-
   
   @GetMapping("/")
   public String toIndexPage(Model model) {
@@ -136,6 +136,7 @@ public class IndexController {
       wma_object = buildDefaultMAObject("WMA", true, defaultPeriod);
     }
     
+    // MA
     List<MovingAverage> maList = new ArrayList<>();
     maList.add(sma_object);
     maList.add(wma_object);
@@ -159,13 +160,31 @@ public class IndexController {
       log.error("fail");
     }
     
+    // ML
+    if (mlService.doRegressionPredict(doMaInput.getCoin())
+                 .isPresent()) {
+      GetDoRegressionOutput doRegressionOutput = mlService.doRegressionPredict(doMaInput.getCoin())
+                                                          .get();
+      log.debug("doRegressionOutput={}", doRegressionOutput);
+      if (StringUtils.equals("ok", doRegressionOutput.getStatus())) {
+        List<PredictResult> predictList = doRegressionOutput.getPredictOutput();
+        log.debug("predictList={}", doRegressionOutput);
+        model.addAttribute("predictList", predictList);
+      } else {
+        log.debug("Python status={}", doRegressionOutput.getStatus());
+      }
+      
+    } else {
+      log.error("fail_doRegressionPredict");
+    }
+    
     return "index";
   }
   
   public String buildImagePath(String imageUrl) {
     String result = null;
     if (imageUrl != null) {
-      result = PYTHON + "/" + imageUrl;
+      result = ICAN + "/" + imageUrl;
       log.debug("buildImagePath={}", result);
     }
     return result;
