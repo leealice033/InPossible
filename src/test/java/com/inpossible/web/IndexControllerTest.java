@@ -1,4 +1,4 @@
-package com.inpossible.service.rest;
+package com.inpossible.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
@@ -10,25 +10,31 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.ui.Model;
 
+import com.inpossible.service.rest.MovingAverageService;
 import com.inpossible.service.rest.MovingAverageService.MovingAverage;
 import com.inpossible.service.rest.MovingAverageService.PostDoMaInput;
 import com.inpossible.service.rest.MovingAverageService.PostDoMaOutput;
 
 @Ignore
 @RunWith(SpringRunner.class)
-@SpringBootTest
-public class MovingAverageServiceTest {
+@WebMvcTest(controllers = IndexController.class)
+public class IndexControllerTest {
   private static String defaultCoin = "BTC";
   private static String defaultZoom = "24hr";
   @Autowired
   private MovingAverageService maService;
   
   @Test
-  public void testGetMAChart() {
-    
+  public void testGetRefreshPage(Model model) {
+    /*
+     * String coin, String zoom, String ma_algorithm, Integer SMA_period,
+     * Integer WMA_period, Model model, RedirectAttributes redirectAttributes
+     */
+    // when
     MovingAverage defaultSMA = MovingAverage.builder()
                                             .algorithm("SMA")
                                             .show(true)
@@ -49,6 +55,8 @@ public class MovingAverageServiceTest {
                                               .zoom(defaultZoom)
                                               .ma(defaultMaList)
                                               .build();
+    
+    // then
     String imageUrl = null;
     if (defaultInput != null) {
       System.out.println("defaultInput=" + defaultInput);
@@ -62,8 +70,7 @@ public class MovingAverageServiceTest {
     } else {
       System.out.println("fail");
     }
-    // assertThat(imageUrl).isEqualTo("download/chart");
-    assertThat(imageUrl).contains("python_server");
+    assertThat(imageUrl).isNotNull();
+    
   }
-  
 }
