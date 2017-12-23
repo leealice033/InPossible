@@ -22,7 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MovingAverageService {
   private static final String PATH = "/ma";
-  private static final String PYTHON = "http://127.0.0.1:8000";
+  //private static final String PYTHON = "http://127.0.0.1:8000";
+  private static final String ICAN = "http://ntuesoe.com:8000";//
   private final RestTemplate restTemplate;
   
   public MovingAverageService(@NonNull RestTemplate restTemplate) {
@@ -94,7 +95,7 @@ public class MovingAverageService {
     PostDoMaOutput result = null;
     try {
       log.debug("input={}", input);
-      final String serverUrl = PYTHON + PATH;
+      final String serverUrl = ICAN + PATH +"/"+ input.getCoin();
       log.debug("pythonUrl={}", serverUrl);
       final PostDoMaRequest req = PostDoMaRequest.builder()
                                                  .coin(input.getCoin())
