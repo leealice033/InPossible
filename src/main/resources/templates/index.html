@@ -2,7 +2,7 @@
 
 <!-- InPossible_Logos_04-01.jpg -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -64,254 +64,254 @@
 </head>
 <body>
 
-  <div id="container" class="container">
+	<div id="container" class="container">
 
-    <div class="header clearfix">
-      <nav>
-        <ul class="nav nav-pills pull-right">
-          <li role="presentation" class="active">
-            <a href="#">Home</a>
-          </li>
-          <li role="presentation">
-            <a href="/about">About</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="box">
-        <div class="card front"></div>
-        <div class="card back"></div>
-      </div>
-
-     
-    </div>
-    <div class="jumbotron">
-     <h1 class="text-muted">InPossible</h1>
-      <h3>Intelligence make everything possible!</h3>
-      <p class="lead">Let's make money</p>
-    </div>
+		<div class="header clearfix">
+			<nav>
+				<ul class="nav nav-pills pull-right">
+					<li role="presentation" class="active">
+						<a href="#">Home</a>
+					</li>
+					<li role="presentation">
+						<a href="/about">About</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="box">
+				<div class="card front"></div>
+				<div class="card back"></div>
+			</div>
 
 
-    <div class="row">
-      <div id="mainCol" class="col-md-12">
-        <form method="POST" action="/inpossible">
-          <!-- <input type="hidden" th:if="${imageUrl!=null}" name="imageUrl" th:value="${imageUrl}" /> -->
+		</div>
+		<div class="jumbotron">
+			<h1 class="text-muted">InPossible</h1>
+			<h3>Intelligence make everything possible!</h3>
+			<p class="lead">Let's make money</p>
+		</div>
 
 
-
-          <!-- --******************COIN************************************ -->
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <i class="fa fa-money" aria-hidden="true"></i>
-                Choose Coin
-              </h3>
-            </div>
-            <div>
-              <div class="panel-body">
-                <div>
-                  <div class="form-inline">
-                    <label for="coin">Coin</label>
-                    <select id="coin" class="form-control" name="coin">
-                      <option value="BTC">BTC/USD</option>
-                      <option value="ETH">ETH/USD</option>
-                      <option value="LTC">LTC/USD</option>
-                    </select>
-                    <label for="zoom">Zoom</label>
-                    <select id="zoom" class="form-control" name="zoom">
-                      <option value="1hr">1 Hour</option>
-                      <option value="12hr">12 Hour</option>
-                      <option value="24hr">Day</option>
-                      <option value="7days">Week</option>
-                      <option value="30days">Month</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <!-- /panel body -->
-            </div>
-            <!-- /div th:if -->
-          </div>
-          <!-- /panel-info -->
-
-          <!-- --******************MA************************************ -->
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <i class="fa fa-window-maximize" aria-hidden="true"></i>
-                Statistics Analysis
-              </h3>
-            </div>
-            <div>
-              <div class="panel-body">
-                <div class="table-responsive">
-                  <table class="table table-bordered" id="feature-selection-list">
-                    <thead>
-                      <tr>
-                        <th>Show</th>
-                        <th>Algorithm</th>
-                        <th>Period</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="custom-checkbox">
-                            <input type="checkbox" name="ma_algorithm" value="SMA" />
-                          </div>
-                        </td>
-                        <td>Simple Moving Average, SMA</td>
-                        <td>
-                          <select class="form-control" name="SMA_period" id="period">
-                            <option value="10">10min</option>
-                            <option value="60">1h</option>
-                            <option value="120">2h</option>
-                          </select>
-                        </td>
-
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <div class="custom-checkbox">
-                            <input type="checkbox" name="ma_algorithm" value="WMA" />
-                          </div>
-                        </td>
-                        <td>Weighting Moving Average, WMA</td>
-                        <td>
-                          <select class="form-control" name="WMA_period" id="period">
-                            <option value="10">10min</option>
-                            <option value="60">1h</option>
-                            <option value="120">2h</option>
-                          </select>
-                        </td>
-                      </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <!-- /panel body -->
-            </div>
-            <div class="form-inline">
-              <input type="submit" class="showLoadingIcon btn btn-primary" name="action" value="Refresh"></input>
-            </div>
-            <!-- /div th:if -->
-          </div>
-
-          <!-- /panel-info -->
-
-          <!-- --******************ML************************************ -->
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <i class="fa fa-line-chart" aria-hidden="true"></i>
-                Machine Learning Forecast
-              </h3>
-            </div>
-            <div th:if="${predictList!=null}">
-              <div class="panel-body">
-                <div class="table-responsive">
-                  <table class="table table-bordered" id="feature-selection-list">
-                    <thead>
-                      <tr>
-                        <th>Algorithm</th>
-                        <th>Rise/Fall</th>
-                        <th>Price</th>
-                        <th>Accuracy</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr th:each="predict: ${predictList}">
-                        <td th:text="${predict.algorithm} +' regression'"></td>
-                        <td th:text="${predict.situation}"></td>
-                        <td th:text="${predict.price}"></td>
-                        <td th:text="${predict.accuracy}"></td>
-
-                      </tr>
-
-                   
+		<div class="row">
+			<div id="mainCol" class="col-md-12">
+				<form method="GET" action="/inpossible">
+					<!-- <input type="hidden" th:if="${imageUrl!=null}" name="imageUrl" th:value="${imageUrl}" /> -->
 
 
 
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <!-- /panel body -->
-            </div>
-            <!-- /div th:if -->
-          </div>
-          <!-- /panel-info -->
+					<!-- --******************COIN************************************ -->
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-money" aria-hidden="true"></i>
+								Choose Coin
+							</h3>
+						</div>
+						<div>
+							<div class="panel-body">
+								<div>
+									<div class="form-inline">
+										<label for="coin">Coin</label>
+										<select id="coin" class="form-control" name="coin">
+											<option value="BTC">BTC/USD</option>
+											<option value="ETH">ETH/USD</option>
+											<option value="LTC">LTC/USD</option>
+										</select>
+										<label for="zoom">Zoom</label>
+										<select id="zoom" class="form-control" name="zoom">
+											<option value="6hr">6 Hour</option>
+											<option value="12hr">12 Hour</option>
+											<option value="24hr" selected>Day</option>
+											<option value="7days">Week</option>
+											<option value="30days">Month</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<!-- /panel body -->
+						</div>
+						<!-- /div th:if -->
+					</div>
+					<!-- /panel-info -->
 
-          <div></div>
+					<!-- --******************MA************************************ -->
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-window-maximize" aria-hidden="true"></i>
+								Statistics Analysis
+							</h3>
+						</div>
+						<div>
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table class="table table-bordered" id="feature-selection-list">
+										<thead>
+											<tr>
+												<th>Show</th>
+												<th>Algorithm</th>
+												<th>Period</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													<div class="custom-checkbox">
+														<input type="checkbox" name="ma_algorithm" value="SMA" checked="checked" />
+													</div>
+												</td>
+												<td>Simple Moving Average, SMA</td>
+												<td>
+													<select class="form-control" name="SMA_period" id="period">
+														<option value="10">10min</option>
+														<option value="60">1h</option>
+														<option value="120">2h</option>
+													</select>
+												</td>
 
-        </form>
-        <!-- --******************IMAGE************************************ -->
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              <i class="fa fa-picture-o" aria-hidden="true"></i>
-              Chart
-            </h3>
-          </div>
-          <div>
-            <div class="panel-body">
-              <div th:if="${imageUrl}">
-                <img class="img-responsive" th:src="${imageUrl}" />
-                <a th:href="${imageUrl}" target="_blank">
-                  Download Image
-                  <i class="fa fa-download" aria-hidden="true"></i>
-                </a>
-              </div>
-              <div th:if="${imageUrl=='http://127.0.0.1:8000/'}">
-                <img th:if="${imageUrl=='http://127.0.0.1:8000/'}" class="img-responsive" src="/images/bitcoin.jpg" />
-              </div>
-            </div>
-            <!-- /panel body -->
-          </div>
-          <!-- /div  -->
-        </div>
-        <!-- /panel-info -->
-      </div>
-      <!-- /col -->
+											</tr>
+
+											<tr>
+												<td>
+													<div class="custom-checkbox">
+														<input type="checkbox" name="ma_algorithm" value="WMA" checked="checked" />
+													</div>
+												</td>
+												<td>Weighting Moving Average, WMA</td>
+												<td>
+													<select class="form-control" name="WMA_period" id="period">
+														<option value="10">10min</option>
+														<option value="60">1h</option>
+														<option value="120">2h</option>
+													</select>
+												</td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- /panel body -->
+						</div>
+						<div class="form-inline">
+							<input type="submit" class="showLoadingIcon btn btn-primary" name="action" value="Refresh"></input>
+						</div>
+						<!-- /div th:if -->
+					</div>
+
+					<!-- /panel-info -->
+
+					<!-- --******************ML************************************ -->
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-line-chart" aria-hidden="true"></i>
+								Machine Learning Forecast
+							</h3>
+						</div>
+						<div th:if="${predictList!=null}">
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table class="table table-bordered" id="feature-selection-list">
+										<thead>
+											<tr>
+												<th>Algorithm</th>
+												<th>Rise/Fall</th>
+												<th>Price</th>
+												<th>Accuracy</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="predict: ${predictList}">
+												<td th:text="${predict.algorithm} +' regression'"></td>
+												<td th:text="${predict.situation}"></td>
+												<td th:text="${predict.price}"></td>
+												<td th:text="${predict.accuracy}"></td>
+
+											</tr>
 
 
-    </div>
-
-    <footer class="text-right">
-      <p>Copyright &copy; InPossible | Designed by Alice</p>
-    </footer>
-
-  </div>
 
 
-  <!-- /container -->
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  <script src="/webjars/jquery/jquery.min.js"></script>
-  <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-  <script>
-			$('#select_all').change(function() {
-				var checkboxes = $(this).closest('form').find(':checkbox');
-				checkboxes.prop('checked', $(this).is(':checked'));
-			});
-		</script>
-  <script type="text/javascript">
-			setTimeout(function() {
-				location = ''
-			}, 60000)
-		</script>
 
-  <script type="text/javascript">
-			setTimeout(function() {
-				$(".box").toggleClass("flipped")
-			}, 100)
-		</script>
-  <script type="text/javascript">
-			$(".box").hover(function(event) {
-				$(this).toggleClass("flipped");
-			})
-		</script>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- /panel body -->
+						</div>
+						<!-- /div th:if -->
+					</div>
+					<!-- /panel-info -->
+
+					<div></div>
+
+				</form>
+				<!-- --******************IMAGE************************************ -->
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<i class="fa fa-picture-o" aria-hidden="true"></i>
+							Chart
+						</h3>
+					</div>
+					<div>
+						<div class="panel-body">
+							<div th:if="${imageUrl}">
+								<img class="img-responsive" th:src="${imageUrl}" />
+								<a th:href="${imageUrl}" target="_blank">
+									Download Image
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</a>
+							</div>
+							<div th:if="${imageUrl=='http://127.0.0.1:8000/'}">
+								<img th:if="${imageUrl=='http://127.0.0.1:8000/'}" class="img-responsive" src="/images/bitcoin.jpg" />
+							</div>
+						</div>
+						<!-- /panel body -->
+					</div>
+					<!-- /div  -->
+				</div>
+				<!-- /panel-info -->
+			</div>
+			<!-- /col -->
+
+
+		</div>
+
+		<footer class="text-right">
+			<p>Copyright &copy; InPossible | Designed by Alice</p>
+		</footer>
+
+	</div>
+
+
+	<!-- /container -->
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		$('#select_all').change(function() {
+			var checkboxes = $(this).closest('form').find(':checkbox');
+			checkboxes.prop('checked', $(this).is(':checked'));
+		});
+	</script>
+	<script type="text/javascript">
+		setTimeout(function() {
+			location = ''
+		}, 60000)
+	</script>
+
+	<script type="text/javascript">
+		setTimeout(function() {
+			$(".box").toggleClass("flipped")
+		}, 100)
+	</script>
+	<script type="text/javascript">
+		$(".box").hover(function(event) {
+			$(this).toggleClass("flipped");
+		})
+	</script>
 
 </body>
 </html>

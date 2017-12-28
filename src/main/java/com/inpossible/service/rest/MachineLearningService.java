@@ -23,8 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MachineLearningService {
   private static final String PATH = "/predict";
-  private static final String PYTHON = "http://127.0.0.1:8000";
-  private static final String ICAN = "";//
+  //private static final String PYTHON = "http://127.0.0.1:8000";
+  private static final String ICAN = "http://ntuesoe.com:8000";//
   private final RestTemplate restTemplate;
   
   public MachineLearningService(@NonNull RestTemplate restTemplate) {
@@ -77,7 +77,7 @@ public class MachineLearningService {
   public Optional<GetDoRegressionOutput> doRegressionPredict(String coin) {
     GetDoRegressionOutput result = null;
     try {
-      final String serverUrl = PYTHON + PATH + "/" + coin;
+      final String serverUrl = ICAN + PATH + "/" + coin;
       log.debug("doMachineLearning serverurl ={}", serverUrl);
       
       final ResponseEntity<GetDoRegressionResponse> resEntity = restTemplate.exchange(serverUrl, HttpMethod.GET,
